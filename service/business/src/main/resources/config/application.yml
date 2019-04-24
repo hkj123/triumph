@@ -1,44 +1,44 @@
 management:
-    servlet-path: /api
-    security:
-        enabled: false
-    #prometheus+grafana+springboot2监控集成配置
-    metrics:
-        export:
-            prometheus:
-                enabled: true
-            jmx:
-               enabled: true
-    endpoints:
-        web:
-            exposure:
-                include: '*'
-            base-path: /metrics
-        #prometheus+grafana+springboot2监控集成配置
+  servlet-path: /api
+  security:
+    enabled: false
+#prometheus+grafana+springboot2监控集成配置
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+      jmx:
+       enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      base-path: /metrics
+# prometheus+grafana+springboot2监控集成配置
 spring:
-    application:
-        name: business-service
-    profiles:
-        active: @spring.profiles.active@
-    jackson:
-        serialization.write_dates_as_timestamps: true
-    mvc:
-        favicon:
-            enabled: false
-    devtools:
-        restart:
-            enabled: false
+  application:
+    name: business-service
+  profiles:
+    active: @spring.profiles.active@
+  jackson:
+    serialization.write_dates_as_timestamps: true
+  mvc:
+    favicon:
+      enabled: false
+  devtools:
+    restart:
+      enabled: false
 
 server:
-    port: 9001
-    session:
-        cookie:
-            http-only: true
-        timeout: 36000
-    compression:
-        enabled: true
-        mime-types: application/json,application/xml,text/html,text/xml,text/plain
-        min-response-size: 2048
+  port: 9001
+  session:
+    cookie:
+      http-only: true
+    timeout: 36000
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+    min-response-size: 2048
 
 #mybatis
 mybatis-plus:
@@ -47,29 +47,29 @@ mybatis-plus:
   typeAliasesPackage: com.accumulate.business.entity
   typeEnumsPackage: com.accumulate.business.entity.enums
   global-config:
-#    # 数据库相关配置
+  #    # 数据库相关配置
     db-config:
-#      #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+  #      #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
       id-type: uuid
-#      #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
+  #      #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
       field-strategy: not_empty
-#      #驼峰下划线转换
+  #      #驼峰下划线转换
       column-underline: true
       #数据库大写下划线转换
       capital-mode: true
       #逻辑删除配置
-#      logic-delete-value: 0
-#      logic-not-delete-value: 1
-#      db-type: h2
+  #      logic-delete-value: 0
+  #      logic-not-delete-value: 1
+  #      db-type: h2
     #刷新mapper 调试神器
-#    refresh: true
+  #    refresh: true
   # 原生配置
-#  configuration:
-#    map-underscore-to-camel-case: true
-#    cache-enabled: false
-##logging
-#logging:
-#  level: warn
+  #  configuration:
+  #    map-underscore-to-camel-case: true
+  #    cache-enabled: false
+  ##logging
+  #logging:
+  #  level: warn
 hystrix:
   command:
     default:

@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: triumph
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: triumph
+  name: eureka
+  labels:
+    app: eureka
+spec:
+  ports:
+  - name: http-eureka
+    nodePort: 31953
+    port: 8761
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: eureka
+  type: NodePort
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  namespace: triumph
+  name: eureka
+  labels:
+    app: eureka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eureka
+  template:
+    metadata:
+      labels:
+        app: eureka
+    spec:
+      containers:
+      - name: eureka
+        image: billy98/nginx-prometheus-metrics:latest          #镜像地址
+        imagePullPolicy: Always
+        ports:
+        - name: http-metrics
+          containerPort: 9527
