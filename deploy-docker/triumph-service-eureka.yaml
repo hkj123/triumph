@@ -41,9 +41,10 @@ spec:
       containers:
       - name: eureka
         image: registry.cn-hangzhou.aliyuncs.com/hukaijia/eureka:1.0.0 #镜像地址
-        imagePullPolicy: Always
+        imagePullPolicy: Never   #使用本地镜像
+#        imagePullPolicy: Always   #拉取镜像
         ports:
-        - containerPort: 9071
+        - containerPort: 8761
         - containerPort: 5005            #镜像拉去下来推到本地机器上
         env:
         - name: LNAG
