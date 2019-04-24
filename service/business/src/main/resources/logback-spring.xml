@@ -4,6 +4,12 @@
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
     <property name="LOG_HOME" value="/home/logs" />
 
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>1-%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
     <!-- 按照每天生成日志文件 -->
     <appender name="FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">">
@@ -63,9 +69,58 @@
         <resetJUL>true</resetJUL>
     </contextListener>
 
-    <root level="#logback.loglevel#">
-        <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE" />
-    </root>
+    <!--<appender name="LOGSTASH" class="ch.qos.logback.core.ConsoleAppender"> -->
+    <!--<encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">-->
+    <!--<providers>-->
+    <!--<timestamp>-->
+    <!--<timeZone>UTC</timeZone>-->
+    <!--</timestamp>-->
+    <!--<pattern>-->
+    <!--<pattern>-->
+    <!--{-->
+    <!--"ip": "${ip}",-->
+    <!--"app": "${appName}",-->
+    <!--"level": "%level",-->
+    <!--"trace": "%X{X-B3-TraceId:-}",-->
+    <!--"span": "%X{X-B3-SpanId:-}",-->
+    <!--"parent": "%X{X-B3-ParentSpanId:-}",-->
+    <!--"thread": "%thread",-->
+    <!--"class": "%logger{40}",-->
+    <!--"message": "%message",-->
+    <!--"stack_trace": "%exception{10}"-->
+    <!--　　　　　　　　　　　　　}-->
+    <!--</pattern>-->
+    <!--</pattern>-->
+    <!--</providers>-->
+    <!--</encoder>-->
+    <!--</appender>-->
+
+    <!--<root level="#logback.loglevel#">-->
+        <!--<appender-ref ref="CONSOLE"/>-->
+        <!--<appender-ref ref="FILE" />-->
+    <!--</root>-->
+
+    <springProfile name="prod">
+        <root level="info">
+            <appender-ref ref="FILE"/>
+            <appender-ref ref="CONSOLE"/>
+            <!--<appender-ref ref="LOGSTASH"/>-->
+        </root>
+    </springProfile>
+
+    <springProfile name="test">
+        <root level="info">
+            <appender-ref ref="FILE"/>
+            <appender-ref ref="CONSOLE"/>
+            <!--<appender-ref ref="LOGSTASH"/>-->
+        </root>
+    </springProfile>
+
+    <springProfile name="dev">
+        <root level="info">
+            <appender-ref ref="FILE"/>
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
 
 </configuration>

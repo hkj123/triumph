@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: drore-saas-ts
+  namespace: monitoring
+spec:
+  endpoints:
+  - interval: 15s
+    port: http-ts
+    path: /ts/metrics/prometheus
+  jobLabel: app
+  namespaceSelector:  # 表示去匹配某一命名空间中的service，如果想从所有的namespace中匹配用any: true
+      matchNames:
+      - drore-saas
+  selector:
+    matchLabels:
+      app: ts

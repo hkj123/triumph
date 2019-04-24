@@ -43,7 +43,52 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>1.1.2</version>
+                <configuration>
+                    <from>
+                        <image>registry.cn-hangzhou.aliyuncs.com/hukaijia/jib:1.0</image>
+                    </from>
+                    <to>
+                        <image>registry.cn-hangzhou.aliyuncs.com/hukaijia/eureka:1.0.0</image>
+                        <auth>
+                            <username>190916516@qq.com</username>
+                            <password>hukaijia.110</password>
+                        </auth>
+                    </to>
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>build</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <!--<container>-->
+                    <!--<jvmFlags>-->
+                    <!--<jvmFlag>-Xdebug</jvmFlag>-->
+                    <!--<jvmFlag>-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005</jvmFlag>-->
+                    <!--</jvmFlags>-->
+                    <!--</container>-->
+
+                    <!--from：拉取的镜像的配置，默认为gcr.io/distroless/java-->
+                    <!--to:要生成的镜像的配置-->
+                    <!--image：拉取或生成的镜像名称-->
+                    <!--auth: 认证信息，分别为用户名和密码-->
+
+                    <!--&lt;!&ndash; 下面四个基本用不到，上面四个足以  &ndash;&gt;-->
+                    <!--container: 容器的属性-->
+                    <!--jvmFlgs: JVM 容器的参数，和 Dockerfile 的 ENTRYPOINT作用相同-->
+                    <!--mainClass: 启动类限定名-->
+                    <!--args: main 方法的传入参数-->
+                    <!--ports: 容器暴露的端口，和 Dockerfile 的EXPOSE作用相同-->
+                    <!---->
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
 
 </project>

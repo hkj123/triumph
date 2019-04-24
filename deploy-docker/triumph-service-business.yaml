@@ -40,7 +40,7 @@ spec:
     spec:
       containers:
       - name: business
-        image: billy98/nginx-prometheus-metrics:latest          #镜像地址
+        image: registry.cn-hangzhou.aliyuncs.com/hukaijia/business:1.0.0          #aliyun私有镜像地址
         imagePullPolicy: Always
         ports:
         - name: http-metrics

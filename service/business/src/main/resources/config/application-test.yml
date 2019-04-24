@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: prod
+  jackson:
+    serialization.indent_output: true
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://192.168.0.150:5432/postgres_test
+    username: postgres
+    password: drore1!
+eureka:
+  instance:
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
+  client:
+  register-with-eureka: true
+  fetch-registry: true
+  service-url:
+    defaultZone: http://localhost:8761/eureka/

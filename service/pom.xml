@@ -20,7 +20,7 @@
         <module>zuul</module>
         <module>business</module>
         <!--<module>file</module>-->
-        <module>report</module>
+        <!--<module>report</module>-->
         <!--<module>test</module>-->
     </modules>
 
@@ -59,6 +59,44 @@
                 </dependency>
 
             </dependencies>
+        </profile>
+
+        <profile>
+            <id>test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <configuration>
+                            <warSourceDirectory>src/main/webapp/</warSourceDirectory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+            <properties>
+                <logback.loglevel>DEBUG</logback.loglevel>
+                <spring.profiles.active>test</spring.profiles.active>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>prod</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <configuration>
+                            <warSourceDirectory>src/main/webapp/</warSourceDirectory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+            <properties>
+                <logback.loglevel>info</logback.loglevel>
+                <spring.profiles.active>prod</spring.profiles.active>
+            </properties>
         </profile>
     </profiles>
 

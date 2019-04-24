@@ -13,7 +13,7 @@ metadata:
 spec:
   ports:
   - name: http-eureka
-    nodePort: 31953
+    nodePort: 30081
     port: 8761
     protocol: TCP
     targetPort: 80
@@ -40,8 +40,11 @@ spec:
     spec:
       containers:
       - name: eureka
-        image: billy98/nginx-prometheus-metrics:latest          #镜像地址
+        image: registry.cn-hangzhou.aliyuncs.com/hukaijia/eureka:1.0.0 #镜像地址
         imagePullPolicy: Always
         ports:
-        - name: http-metrics
-          containerPort: 9527
+        - containerPort: 9071
+        - containerPort: 5005            #镜像拉去下来推到本地机器上
+        env:
+        - name: LNAG
+          value: en_US.UTF-8

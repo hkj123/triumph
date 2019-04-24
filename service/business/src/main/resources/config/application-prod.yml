@@ -1,0 +1,28 @@
+spring:
+  profiles:
+    active: prod
+  jackson:
+    serialization.indent_output: true
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://postgres.drore-db:5432/drore_saas
+    username: postgres
+    password: drore1!
+
+  # Redis
+  redis:
+    host: redis.drore-db
+    password:
+    # 数据库索引 默认0
+    database: 4
+    port: 6379
+    timeout: 3000s
+eureka:
+  instance:
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
+  client:
+  register-with-eureka: true
+  fetch-registry: true
+  service-url:
+    defaultZone: http://localhost:8761/eureka/
