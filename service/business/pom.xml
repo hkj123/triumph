@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.accumulate</groupId>
+        <artifactId>triumph-service</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>triumph-service-business</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <!--<packaging>jar</packaging>-->
+
+    <name>triumph-service-business</name>
+    <description>business Center 业务主服务</description>
+
+    <dependencies>
+        <!-- mybatis-plus begin -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!--运行打包的应用程序时，开发人员工具会自动禁用-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.0-RC3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.2</version>
+        </dependency>
+        <!-- mybatis-plus end -->
+        <!-- 数据库配置 -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+         <!--连接mysql数据库驱动-->
+        <!--<dependency>-->
+        <!--<groupId>mysql</groupId>-->
+        <!--<artifactId>mysql-connector-java</artifactId>-->
+        <!--<scope>runtime</scope>-->
+        <!--</dependency>-->
+        <!-- 单元测试相关依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>25.1-jre</version>
+        </dependency>
+
+        <!--springboot添加prometheus健康监控-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+         </dependency>
+        <!--prometheus监控  https://prometheus.io/docs/introduction/overview/-->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
+        <!--springboot添加prometheus健康监控-->
+        <!--json-smart json string 和json转化-->
+        <!--<dependency>-->
+        <!--<groupId>net.minidev</groupId>-->
+        <!--<artifactId>json-smart</artifactId>-->
+        <!--<version>RELEASE</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>commons-io</groupId>-->
+        <!--<artifactId>commons-io</artifactId>-->
+        <!--<version>RELEASE</version>-->
+        <!--</dependency>-->
+        <!--Java Caching(缓存)-策略和JCache API-->
+        <!--<dependency>-->
+        <!--<groupId>javax.cache</groupId>-->
+        <!--<artifactId>cache-api</artifactId>-->
+        <!--<version>${jcache.version}</version>-->
+        <!--</dependency>-->
+        <!--集成RabbitMQ-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-amqp</artifactId>-->
+        <!--</dependency>-->
+        <!--httpclient-->
+        <!--<dependency>-->
+        <!--<groupId>org.apache.commons</groupId>-->
+        <!--<artifactId>commons-lang3</artifactId>-->
+        <!--<version>${apache.common.lang3.version}</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--<groupId>joda-time</groupId>-->
+        <!--<artifactId>joda-time</artifactId>-->
+        <!--<version>2.9.7</version>-->
+        <!--</dependency>-->
+        <!--excel导出-->
+        <!--<dependency>-->
+        <!--<groupId>org.apache.poi</groupId>-->
+        <!--<artifactId>poi</artifactId>-->
+        <!--<version>${apache.poi.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>org.apache.poi</groupId>-->
+        <!--<artifactId>poi-ooxml</artifactId>-->
+        <!--<version>${apache.poi.version}</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--<groupId>javax.inject</groupId>-->
+        <!--<artifactId>javax.inject</artifactId>-->
+        <!--<version>${javax.inject.version}</version>-->
+        <!--</dependency>-->
+
+        <!--restdoc-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.restdocs</groupId>-->
+        <!--<artifactId>spring-restdocs-mockmvc</artifactId>-->
+        <!--<version>1.2.1.RELEASE</version>-->
+        <!--<scope>test</scope>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--<groupId>com.h2database</groupId>-->
+        <!--<artifactId>h2</artifactId>-->
+        <!--<scope>runtime</scope>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--<groupId>io.springfox</groupId>-->
+        <!--<artifactId>springfox-staticdocs</artifactId>-->
+        <!--<version>2.6.1</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--<groupId>com.alibaba</groupId>-->
+        <!--<artifactId>fastjson</artifactId>-->
+        <!--<version>1.2.8</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--<groupId>com.alibaba</groupId>-->
+        <!--<artifactId>druid-spring-boot-starter</artifactId>-->
+        <!--<version>1.1.10</version>-->
+        <!--</dependency>-->
+    </dependencies>
+
+    <repositories>
+        <!--阿里云仓库-->
+        <repository>
+            <id>aliyun</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </repository>
+        <!--快照版本使用,正式版本无需添加此仓库-->
+        <repository>
+            <id>snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </repository>
+    </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${docker.plugin.version}</version>
+                <configuration>
+                    <imageName>triumph-business-dockerfile</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.accumulate.business.BusinessApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--&lt;!&ndash; 文档生成插件 &ndash;&gt;-->
+            <!--&lt;!&ndash;${project.basedir}/src/main/asciidoc&ndash;&gt;-->
+            <!--&lt;!&ndash;基本都用过 maven 的 surefire 插件，生成文档的单元测试 .java 文件统一使用特定的后缀&ndash;&gt;-->
+            <!--<plugin>-->
+            <!--<groupId>org.apache.maven.plugins</groupId>-->
+            <!--<artifactId>maven-surefire-plugin</artifactId>-->
+            <!--<configuration>-->
+            <!--<includes>-->
+            <!--<include>**/*Documentation.java</include>-->
+            <!--</includes>-->
+            <!--</configuration>-->
+            <!--</plugin>-->
+            <!--&lt;!&ndash;添加Asciidoctor插件&ndash;&gt;-->
+            <!--<plugin>-->
+            <!--<groupId>org.asciidoctor</groupId>-->
+            <!--<artifactId>asciidoctor-maven-plugin</artifactId>-->
+            <!--<version>1.5.3</version>-->
+            <!--&lt;!&ndash;配置通用文档生成设置&ndash;&gt;-->
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<id>generate-docs</id>-->
+            <!--<phase>prepare-package</phase>-->
+            <!--<goals>-->
+            <!--<goal>process-asciidoc</goal>-->
+            <!--</goals>-->
+            <!--<configuration>-->
+            <!--<backend>html</backend>-->
+            <!--<doctype>book</doctype>-->
+            <!--<attributes>-->
+            <!--<snippets>${project.build.directory}/generated-snippets</snippets>-->
+            <!--</attributes>-->
+            <!--<sourceDirectory>${project.basedir}/src/main/asciidoc</sourceDirectory>-->
+            <!--<sourceDocumentName>api.adoc</sourceDocumentName>-->
+            <!--</configuration>-->
+            <!--</execution>-->
+            <!--</executions>-->
+            <!--<dependencies>-->
+            <!--<dependency>-->
+            <!--<groupId>org.springframework.restdocs</groupId>-->
+            <!--<artifactId>spring-restdocs-asciidoctor</artifactId>-->
+            <!--<version>2.0.1.RELEASE</version>-->
+            <!--</dependency>-->
+            <!--</dependencies>-->
+            <!--</plugin>-->
+            <!--&lt;!&ndash;jar中直接包含文档，可以在 maven-resources 插件中配置将文档添加到 jar 的指定目录中，如下是放到 static/docs 中&ndash;&gt;-->
+            <!--<plugin>-->
+            <!--<artifactId>maven-resources-plugin</artifactId>-->
+            <!--<version>2.7</version>-->
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<id>copy-resources</id>-->
+            <!--<phase>prepare-package</phase>-->
+            <!--<goals>-->
+            <!--<goal>copy-resources</goal>-->
+            <!--</goals>-->
+            <!--<configuration>-->
+            <!--<outputDirectory>-->
+            <!--${project.build.outputDirectory}/static/docs-->
+            <!--</outputDirectory>-->
+            <!--<resources>-->
+            <!--<resource>-->
+            <!--<directory>-->
+            <!--${project.build.directory}/generated-docs-->
+            <!--</directory>-->
+            <!--</resource>-->
+            <!--</resources>-->
+            <!--</configuration>-->
+            <!--</execution>-->
+            <!--</executions>-->
+            <!--</plugin>-->
+
+        </plugins>
+    </build>
+
+</project>

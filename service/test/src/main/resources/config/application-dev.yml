@@ -1,0 +1,85 @@
+spring:
+    profiles:
+        active: dev
+        include: swagger
+    devtools:
+        restart:
+            enabled: true
+        livereload:
+            enabled: false # we use gulp + BrowserSync for livereload
+    jackson:
+        serialization.indent_output: true
+    datasource:
+        type: com.zaxxer.hikari.HikariDataSource
+        url: jdbc:mysql://192.168.3.2:3507/hukaijiatest?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowMultiQueries=true&useSSL=false
+        username: root
+        password: 123456
+        hikari:
+            data-source-properties:
+                cachePrepStmts: true
+                prepStmtCacheSize: 250
+                prepStmtCacheSqlLimit: 2048
+                useServerPrepStmts: true
+            maximumPoolSize: 50
+#    rabbitmq:
+#        username: dev
+#        password: dev
+#        host: 192.168.3.10
+#        virtual-host: dev
+#        port: 5672
+
+    cache:
+        jcache:
+            config: ehcache.xml
+    redis:
+          database: 8
+          host: 192.168.3.2
+          port: 6379
+          expireTime: 3600
+          sysName: hukaijiatest
+          password: redis123456
+          pool:
+            #连接池支持的最大连接数
+            max-active: 1000
+            #连接池中连接用完时,新的请求等待时间,毫秒
+            max-wait: 60000
+            #连接池中最多可空闲maxIdle个连接
+            max-idle: 400
+            #test
+            testOnBorrow: true
+            #test
+            testOnReturn: true
+
+
+eureka:
+  instance:
+#     hostname: business-service
+#     prefer-ip-address: true
+       statusPageUrlPath: /info
+       healthCheckUrlPath: /health
+  client:
+       register-with-eureka: true
+       fetch-registry: true
+       service-url:
+#            defaultZone: http://localhost:8761/eureka/,http://localhost:8760/eureka/   同时注册到两个注册中心  实现服务的负载均衡
+         defaultZone: http://${security.user.name}:${security.user.password}@${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
+
+security:
+    basic:
+        enabled: true
+    user:
+        name: root
+        password: 123456
+
+#cuibei:
+#  baiduMap:
+#    webUrl: http://api.map.baidu.com/place/v2/search?region=全国&ak=
+#    webAk: lHaYCXlRADlhW0fnv8tpIhCfqD85pTSr
+
+threadPool:
+   corePoolSize: 10
+   maxPoolSize: 200
+   keepAliveSeconds: 60
+   queueCapacity: 500
+   allowCoreThreadTimeout: false
+   threadNamePrefix: triumph-

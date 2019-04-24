@@ -1,0 +1,44 @@
+management:
+    servlet-path: /api
+    security:
+        enabled: false
+spring:
+    application:
+        name: zuul
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+        default-property-inclusion: non_null
+server:
+    port: 9000 #启动端口
+    compression:
+        enabled: true
+        mime-types: application/json,application/xml,text/html,text/xml,text/plain
+        min-response-size: 2048
+eureka:
+  instance:
+       statusPageUrlPath: /info
+       healthCheckUrlPath: /health
+  client:
+       register-with-eureka: true
+       fetch-registry: true
+       service-url:
+#            defaultZone: http://localhost:8761/eureka/
+          defaultZone: http://${security.user.name}:${security.user.password}@${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
+
+security:
+    basic:
+        enabled: true
+    user:
+        name: root
+        password: 123456
+endpoints:
+   shutdown:
+       enabled: true
+
+info:
+   name: 网关
+   desc: 对外接口出口
+
+#file:
+#   sensitive-headers: Cookie,Set-Cookie

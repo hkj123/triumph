@@ -1,0 +1,23 @@
+spring:
+    profiles:
+        active: dev
+        include: swagger
+    devtools:
+        restart:
+            enabled: true
+        livereload:
+            enabled: false # we use gulp + BrowserSync for livereload
+    jackson:
+        serialization.indent_output: true
+    datasource:
+        url: jdbc:mysql://192.168.3.2:3507/hukaijiatest?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowMultiQueries=true&useSSL=false
+        username: root
+        password: 123456
+mybatis:
+  basePackage: com.accumulate.report.mapper
+  xmlLocation: classpath:mapper/**/*.xml
+  configuration:
+     map-underscore-to-camel-case: true
+     mapUnderscoreToCamelCase: true
+
+

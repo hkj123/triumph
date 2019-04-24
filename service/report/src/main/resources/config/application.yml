@@ -1,0 +1,52 @@
+management:
+    servlet-path: /api
+    security:
+        enabled: false
+spring:
+    application:
+        name: report-service
+    profiles:
+        active: @spring.profiles.active@
+    jackson:
+        serialization.write_dates_as_timestamps: true
+    mvc:
+        favicon:
+            enabled: false
+server:
+    port: 9003
+    session:
+        cookie:
+            http-only: true
+        timeout: 36000
+    compression:
+        enabled: true
+        mime-types: application/json,application/xml,text/html,text/xml,text/plain
+        min-response-size: 2048
+
+eureka:
+  instance:
+#     hostname: business-service
+#     prefer-ip-address: true
+       statusPageUrlPath: /info
+       healthCheckUrlPath: /health
+  client:
+       register-with-eureka: true
+       fetch-registry: true
+       service-url:
+#            defaultZone: http://localhost:8761/eureka/
+         defaultZone: http://${security.user.name}:${security.user.password}@${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
+
+security:
+    basic:
+        enabled: true
+    user:
+        name: root
+        password: 123456
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000

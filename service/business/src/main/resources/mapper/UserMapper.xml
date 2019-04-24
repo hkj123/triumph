@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.accumulate.business.mapper.UserMapper">
+
+    <select id="mySelectPage" resultType="com.accumulate.business.entity.User">
+		select *
+		from test_user
+        <if test="ps.erhao != null and ps.erhao != ''">
+            <where>
+                name = #{ps.erhao}
+            </where>
+        </if>
+	</select>
+
+    <select id="mySelectPage2" resultType="com.accumulate.business.entity.User">
+        select
+        <include refid="Base_Column_List"/>
+        from test_user
+        <!-- 判断 wrapper 是否为空 emptyOfWhere -->
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+		id, name
+	</sql>
+
+    <delete id="deleteAll">
+		DELETE FROM test_user
+	</delete>
+
+    <select id="selectListByWrapper" resultType="com.accumulate.business.entity.User">
+        SELECT * FROM test_user
+        <!-- 判断 wrapper 是否为空 emptyOfWhere -->
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+
+
+</mapper>

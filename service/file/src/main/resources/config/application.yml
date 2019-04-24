@@ -1,0 +1,32 @@
+management:
+    servlet-path: /api
+    security:
+        enabled: false
+
+spring:
+    application:
+        name: file-service
+    profiles:
+        active: @spring.profiles.active@
+    jackson:
+        serialization.write_dates_as_timestamps: true
+    mvc:
+        favicon:
+            enabled: false
+server:
+    port: 9002
+    session:
+        cookie:
+            http-only: true
+        timeout: 36000
+    compression:
+        enabled: true
+        mime-types: application/json,application/xml,text/html,text/xml,text/plain
+        min-response-size: 2048
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
