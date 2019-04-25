@@ -1,4 +1,4 @@
-package com.accumulate.business.config;
+package com.accumulate.business.config.health;
 
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;
@@ -22,4 +22,6 @@ public class MicrometerConfiguration {
                     .commonTags("application", application);
         };
     }
+//    http://localhost:9001/actuator/prometheus  查看健康状况
+    //http://localhost:9001/metrics/metrics/hikaricp.connections.active
 }

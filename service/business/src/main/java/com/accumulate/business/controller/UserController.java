@@ -1,10 +1,12 @@
 package com.accumulate.business.controller;
 
+import com.accumulate.business.config.health.Health;
 import com.accumulate.business.entity.User;
 import com.accumulate.business.model.MyPage;
 import com.accumulate.business.model.ParamSome;
 import com.accumulate.business.model.Result;
 import com.accumulate.business.service.IUserService;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -13,9 +15,15 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
+import java.beans.PropertyDescriptor;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -30,6 +38,11 @@ public class UserController extends ApiController {
     @Autowired
     private IUserService userService;
 
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+    @Autowired
+    private RestTemplate restTemplate;
     /**
      * http://localhost:8080/user/add
      * 简单添加
@@ -40,6 +53,8 @@ public class UserController extends ApiController {
     public Object addUser(@RequestBody final User user
 //            ,@RequestHeader(value = "token") String token
     ) {
+//        redis缓存使用示例
+        redisTemplate.opsForValue().set("user", user);
         return userService.save(user);
     }
 
@@ -59,9 +74,9 @@ public class UserController extends ApiController {
      */
     @GetMapping("/PageFindUserModel")
     @ApiOperation(value = "PageFind user model")
-    public Object PageFindUserModel(@ApiParam(value = "分页页数", required = true) @RequestParam(value = "current",required = true) int current,
-                                    @ApiParam(value = "页数量", required = true) @RequestParam(value = "size",required = true) int size,
-                                    @ApiParam(value = "查询name", required = false) @RequestParam(value = "name",required = false) String name) {
+    public Object PageFindUserModel(@ApiParam(value = "分页页数", required = true) @RequestParam(value = "current", required = true) int current,
+                                    @ApiParam(value = "页数量", required = true) @RequestParam(value = "size", required = true) int size,
+                                    @ApiParam(value = "查询name", required = false) @RequestParam(value = "name", required = false) String name) {
         MyPage<User> myPage = new MyPage<>(current, size);
 
         ParamSome paramSome = new ParamSome();
@@ -93,7 +108,7 @@ public class UserController extends ApiController {
      * http://localhost:8080/user/crudModel
      */
     @GetMapping("/crudModel")
-    public Object crudModel(@ApiParam(value = "删除id", required = false) @RequestParam(value = "id",required = true) String id) {
+    public Object crudModel(@ApiParam(value = "删除id", required = false) @RequestParam(value = "id", required = true) String id) {
         System.err.println("删除一条数据");
         userService.removeById(id);
         System.err.println("deleteAll：");
@@ -143,13 +158,19 @@ public class UserController extends ApiController {
     }
 
     @GetMapping("/selectWrapperCount")
-    public Result selectWrapperCount(@ApiParam(value = "查询name", required = true) @RequestParam(value = "name",required = true) String name) {
+    public Result selectWrapperCount(@ApiParam(value = "查询name", required = true) @RequestParam(value = "name", required = true) String name) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("name", name);
         List<User> userList = userService.selectListByWrapper(queryWrapper);
         return new Result(Result.ReturnValue.SUCCESS, "selectWrapperOne", userList);
     }
 
+    @GetMapping("/getHealth")
+    @ApiOperation(value = "getHealth")
+    public Object getHealth() {
+        Health health = restTemplate.getForObject("http://business-service:9001/metrics/health",Health.class);
+        return health;
+    }
     /**
      * <p>
      * 测试通用 Api Controller 逻辑

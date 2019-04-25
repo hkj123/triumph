@@ -25,25 +25,26 @@ spring:
 #        host: 192.168.3.10
 #        virtual-host: dev
 #        port: 5672
+  # Redis
   redis:
-    database: 8
-    host: 192.168.3.2
+    host: 192.168.0.150
+    password:
+    # 数据库索引 默认0
+    database: 3
     port: 6379
-    expireTime: 3600
-    sysName: hukaijiatest
-    password: redis123456
-    pool:
-      #连接池支持的最大连接数
-      max-active: 1000
-      #连接池中连接用完时,新的请求等待时间,毫秒
-      max-wait: 60000
-      #连接池中最多可空闲maxIdle个连接
-      max-idle: 400
-      #test
-      testOnBorrow: true
-      #test
-      testOnReturn: true
-
+    timeout: 3000s
+    jedis:
+      pool:
+        #连接池支持的最大连接数
+        max-active: 1000
+        #连接池中连接用完时,新的请求等待时间,毫秒
+        max-wait: 60000
+        #连接池中最多可空闲maxIdle个连接
+        max-idle: 400
+        #test
+        testOnBorrow: true
+        #test
+        testOnReturn: true
 
 eureka:
   instance:

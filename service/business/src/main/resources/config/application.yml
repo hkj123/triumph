@@ -1,5 +1,9 @@
+info:
+  app:
+    version: 2.1.1
+    name: spring-boot
 management:
-  servlet-path: /api
+#  servlet-path: /api
   security:
     enabled: false
 #prometheus+grafana+springboot2监控集成配置
@@ -14,6 +18,14 @@ management:
       exposure:
         include: '*'
       base-path: /metrics
+#    db:
+#      enabled: true
+#    redis:
+#      enabled: true
+  endpoint:
+    health:
+      show-details: always
+
 # prometheus+grafana+springboot2监控集成配置
 spring:
   application:
