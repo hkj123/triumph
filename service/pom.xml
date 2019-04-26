@@ -19,6 +19,7 @@
         <module>eureka</module>
         <module>zuul</module>
         <module>business</module>
+        <module>admin</module>
         <!--<module>file</module>-->
         <!--<module>report</module>-->
         <!--<module>test</module>-->

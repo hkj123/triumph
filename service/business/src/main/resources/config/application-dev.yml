@@ -2,67 +2,33 @@ spring:
   profiles:
     active: dev
     include: swagger
-  devtools:
-    restart:
-      enabled: true
-    livereload:
-      enabled: false # we use gulp + BrowserSync for livereload
-  jackson:
-    serialization.indent_output: true
   datasource:
     platform: postgres
     url: jdbc:postgresql://192.168.0.150:5432/postgres_test
     username: postgres
     password: drore1!
-#        initialization-mode: always
-#        continue-on-error: true
-#        url: jdbc:mysql://192.168.3.2:3507/hukaijiatest?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowMultiQueries=true&useSSL=false
-#        username: root
-#        password: 123456
-#    rabbitmq:
-#        username: dev
-#        password: dev
-#        host: 192.168.3.10
-#        virtual-host: dev
-#        port: 5672
-  # Redis
   redis:
     host: 192.168.0.150
     password:
-    # 数据库索引 默认0
     database: 3
     port: 6379
     timeout: 3000s
     jedis:
       pool:
-        #连接池支持的最大连接数
         max-active: 1000
-        #连接池中连接用完时,新的请求等待时间,毫秒
         max-wait: 60000
-        #连接池中最多可空闲maxIdle个连接
         max-idle: 400
-        #test
         testOnBorrow: true
-        #test
         testOnReturn: true
 
 eureka:
   instance:
-  #     hostname: business-service
-  #     prefer-ip-address: true
-    statusPageUrlPath: /info
-    healthCheckUrlPath: /health
+    leaseRenewalIntervalInSeconds: 10
+#    spring-admin
+    health-check-url-path: /actuator/health
   client:
-  register-with-eureka: true
-  fetch-registry: true
-  service-url:
-    defaultZone: http://localhost:8761/eureka/
-  #            defaultZone: http://${security.user.name}:${security.user.password}@${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
-
-threadPool:
-  corePoolSize: 10
-  maxPoolSize: 200
-  keepAliveSeconds: 60
-  queueCapacity: 500
-  allowCoreThreadTimeout: false
-  threadNamePrefix: triumph-
+    registryFetchIntervalSeconds: 5
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

@@ -19,6 +19,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.beans.PropertyDescriptor;
 import java.util.HashMap;
@@ -167,9 +169,19 @@ public class UserController extends ApiController {
 
     @GetMapping("/getHealth")
     @ApiOperation(value = "getHealth")
-    public Object getHealth() {
-        Health health = restTemplate.getForObject("http://business-service:9001/metrics/health",Health.class);
-        return health;
+    public ModelAndView getHealth() {
+//        Health health = restTemplate.getForObject("http://business-service:9001/metrics/health",Health.class);
+            String url = "http://business-service:9001/metrics/prometheus";
+            return new ModelAndView(url);
+    }
+
+    @GetMapping("/noParamRedirect")
+    @ApiOperation(value = "noParamRedirect")
+    public RedirectView noParamTest() {
+        RedirectView redirectTarget = new RedirectView();
+        redirectTarget.setContextRelative(true);
+        redirectTarget.setUrl("http://localhost:9001/metrics/prometheus");
+        return redirectTarget;
     }
     /**
      * <p>
