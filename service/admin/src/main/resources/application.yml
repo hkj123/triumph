@@ -1,0 +1,57 @@
+spring:
+  application:
+    name: admin
+  profiles:
+    active:
+      - secure
+    jackson:
+      date-format: yyyy-MM-dd HH:mm:ss
+      time-zone: GMT+8
+      default-property-inclusion: non_null
+server:
+  port: 8781 #启动端口
+#  compression:
+#      enabled: true
+#      mime-types: application/json,application/xml,text/html,text/xml,text/plain
+#      min-response-size: 2048
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+#    statusPageUrlPath: /info
+#    healthCheckUrlPath: /health
+  client:
+    registryFetchIntervalSeconds: 5
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+---
+spring:
+  profiles: insecure
+---
+spring:
+  profiles: secure
+  security:
+    user:
+      name: "admin"
+      password: "admin"
+eureka:
+  instance:
+    metadata-map:
+      user.name: "admin"         #These two are needed so that the server
+      user.password: "admin" #can acc
+
+info:
+  app:
+    version: 2.1.1
+    name: spring-boot-admin
