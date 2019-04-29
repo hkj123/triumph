@@ -18,6 +18,9 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+  server:
+    servlet:
+      context-path: /ts
 
 # prometheus+grafana+springboot2监控集成配置
 spring:
