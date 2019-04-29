@@ -13,10 +13,10 @@ metadata:
 spec:
   ports:
   - name: http-business
-    nodePort: 30082
-    port: 9001
+    nodePort: 30085
+    port: 80
     protocol: TCP
-    targetPort: 9001
+    targetPort: 80
   selector:
     app: business
   type: NodePort
@@ -41,7 +41,7 @@ spec:
       containers:
       - name: business
         image: registry.cn-hangzhou.aliyuncs.com/hukaijia/business:1.0.0          #aliyun私有镜像地址
-        imagePullPolicy: Never   #使用本地镜像
+        imagePullPolicy: IfNotPresent   #使用本地镜像
 #        imagePullPolicy: Always   #拉取镜像
         ports:
         - containerPort: 9001

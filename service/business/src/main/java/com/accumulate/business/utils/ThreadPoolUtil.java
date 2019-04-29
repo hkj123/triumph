@@ -39,7 +39,7 @@ public class ThreadPoolUtil {
         return pool;
     }
 
-    public static void main(final String[] args) {
-        System.out.println(pool.getPoolSize());
-    }
+//    public static void main(final String[] args) {
+//        System.out.println(pool.getPoolSize());
+//    }
 }
