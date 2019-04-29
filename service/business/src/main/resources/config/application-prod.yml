@@ -30,10 +30,10 @@ eureka:
 #    spring-admin
     metadata-map:
       management:
-        context-path: /ts/actuator
-    health-check-url: http://118.31.17.205:30085/ts/actuator/health
-    status-page-url: http://118.31.17.205:30085/ts/actuator/info
-#    home-page-url: http://118.31.17.205:31943/
+        context-path: /actuator
+    health-check-url: http://118.31.17.205:30085/actuator/health
+    status-page-url: http://118.31.17.205:30085/actuator/info
+    home-page-url: http://118.31.17.205:30085/
 #    prefer-ip-address: true
 #    ip-address: 118.31.17.205
   client:

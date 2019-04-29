@@ -38,12 +38,13 @@ eureka:
 #    spring-admin
     metadata-map:
       management:
-        context-path: /ts/actuator
-    health-check-url: http://localhost:9001/ts/actuator/health
-    status-page-url: http://localhost:9001/ts/actuator/info
-    home-page-url: http://localhost:9001/
-#    prefer-ip-address: true
-#    ip-address: 118.31.17.205
+        context-path: /actuator
+        port: 9001  #设置健康的port 设定特定的访问端口  重要
+    health-check-url: http://192.168.123.83:9001/actuator/health
+    status-page-url: http://192.168.123.83:9001/actuator/info
+    home-page-url: http://192.168.123.83:9001/
+    prefer-ip-address: true
+    ip-address: 192.168.123.83   #设置健康的ip
 #    non-secure-port-enabled: true
 #    non-secure-port: 31943
   client:
@@ -51,4 +52,4 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://118.31.17.205:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/

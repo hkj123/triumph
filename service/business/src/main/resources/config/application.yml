@@ -1,3 +1,6 @@
+#server:
+#  servlet:
+#    context-path: /ts
 info:
   app:
     version: 2.1.1
@@ -18,10 +21,9 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
-  server:
-    servlet:
-      context-path: /ts
-
+#  server:
+#    servlet:
+#      context-path: /ts
 # prometheus+grafana+springboot2监控集成配置
 spring:
   application:
