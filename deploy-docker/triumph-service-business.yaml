@@ -14,9 +14,9 @@ spec:
   ports:
   - name: http-business
     nodePort: 30085
-    port: 80
+    port: 9001
     protocol: TCP
-    targetPort: 80
+    targetPort: 9001
   selector:
     app: business
   type: NodePort
