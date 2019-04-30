@@ -4,10 +4,31 @@ spring:
   profiles:
     active:
       - secure
-    jackson:
-      date-format: yyyy-MM-dd HH:mm:ss
-      time-zone: GMT+8
-      default-property-inclusion: non_null
+## 发送给谁
+#  boot:
+#    admin:
+#      notify:
+#        mail:
+#          to: edwinghu@163.com
+#          from: 190916516@qq.com
+#  mail:
+#    default-encoding: UTF-8
+#    host: smtp.qq.com
+#    username: 190916516@qq.com
+#    password: urbpsnfiyorvbghj
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          port: 465
+#          ssl:
+#            enable: true
+#          starttls:
+#            enable: true
+#            required: true
+#  output:
+#    ansi:
+#      enabled: always
 server:
   port: 8781 #启动端口
 #  compression:

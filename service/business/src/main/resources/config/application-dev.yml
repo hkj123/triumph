@@ -1,3 +1,6 @@
+server:
+  servlet:
+    context-path: /ts
 spring:
   profiles:
     active: dev
@@ -20,7 +23,6 @@ spring:
         max-idle: 400
         testOnBorrow: true
         testOnReturn: true
-
 #eureka:
 #  instance:
 #    leaseRenewalIntervalInSeconds: 10
@@ -38,11 +40,11 @@ eureka:
 #    spring-admin
     metadata-map:
       management:
-        context-path: /actuator
+        context-path: /ts/actuator   #manage url   2
         port: 9001  #设置健康的port 设定特定的访问端口  重要
-    health-check-url: http://192.168.123.83:9001/actuator/health
-    status-page-url: http://192.168.123.83:9001/actuator/info
-    home-page-url: http://192.168.123.83:9001/
+    health-check-url: http://192.168.123.83:9001/ts/actuator/health   # health url 3
+    status-page-url: http://192.168.123.83:9001/ts/actuator/info
+#    home-page-url: http://192.168.123.83:9001/hukaijia
     prefer-ip-address: true
     ip-address: 192.168.123.83   #设置健康的ip
 #    non-secure-port-enabled: true
@@ -53,3 +55,4 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka/
+#      defaultZone: http://118.31.17.205:8761/eureka/

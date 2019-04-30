@@ -1,3 +1,6 @@
+server:
+  servlet:
+    context-path: /ts
 spring:
   profiles:
     active: prod
@@ -15,27 +18,19 @@ spring:
     database: 4
     port: 6379
     timeout: 3000s
-#eureka:
-#  instance:
-#    statusPageUrlPath: /info
-#    healthCheckUrlPath: /health
-#  client:
-#  register-with-eureka: true
-#  fetch-registry: true
-#  service-url:
-#    defaultZone: http://localhost:8761/eureka/
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 10
 #    spring-admin
     metadata-map:
       management:
-        context-path: /actuator
-    health-check-url: http://118.31.17.205:30085/actuator/health
-    status-page-url: http://118.31.17.205:30085/actuator/info
-    home-page-url: http://118.31.17.205:30085/
-#    prefer-ip-address: true
-#    ip-address: 118.31.17.205
+        context-path: /ts/actuator
+        port: 30085
+    health-check-url: http://118.31.17.205:30085/ts/actuator/health
+    status-page-url: http://118.31.17.205:30085/ts/actuator/info
+    home-page-url: http://118.31.17.205:30085/ts/
+    prefer-ip-address: true
+    ip-address: 118.31.17.205
   client:
     registryFetchIntervalSeconds: 5
     register-with-eureka: true
