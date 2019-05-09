@@ -1,12 +1,10 @@
 package com.accumulate.business.controller;
 
-import com.accumulate.business.config.health.Health;
 import com.accumulate.business.entity.User;
 import com.accumulate.business.model.MyPage;
 import com.accumulate.business.model.ParamSome;
 import com.accumulate.business.model.Result;
 import com.accumulate.business.service.IUserService;
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -16,16 +14,12 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.beans.PropertyDescriptor;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 /**

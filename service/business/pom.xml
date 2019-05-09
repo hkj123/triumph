@@ -104,17 +104,17 @@
         </dependency>
         <!-- mybatis-plus end -->
         <!-- 数据库配置 -->
+        <!--        <dependency>-->
+        <!--            <groupId>org.postgresql</groupId>-->
+        <!--            <artifactId>postgresql</artifactId>-->
+        <!--            <scope>runtime</scope>-->
+        <!--        </dependency>-->
+       <!-- 连接mysql数据库驱动-->
         <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <!--连接mysql数据库驱动-->
-        <!--<dependency>-->
-        <!--<groupId>mysql</groupId>-->
-        <!--<artifactId>mysql-connector-java</artifactId>-->
-        <!--<scope>runtime</scope>-->
-        <!--</dependency>-->
         <!-- 单元测试相关依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -153,6 +153,13 @@
             <version>1.1.10</version>
         </dependency>
         <!--druid 数据源-->
+
+        <!--quartz-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+        </dependency>
+        <!--quartz-->
 
         <!--springboot添加prometheus健康监控-->
         <!--json-smart json string 和json转化-->
@@ -244,20 +251,20 @@
     <build>
         <plugins>
             <!--<plugin>-->
-                <!--<groupId>com.spotify</groupId>-->
-                <!--<artifactId>docker-maven-plugin</artifactId>-->
-                <!--<version>${docker.plugin.version}</version>-->
-                <!--<configuration>-->
-                    <!--<imageName>triumph-business-dockerfile</imageName>-->
-                    <!--<dockerDirectory>src/main/docker</dockerDirectory>-->
-                    <!--<resources>-->
-                        <!--<resource>-->
-                            <!--<targetPath>/</targetPath>-->
-                            <!--<directory>${project.build.directory}</directory>-->
-                            <!--<include>${project.build.finalName}.jar</include>-->
-                        <!--</resource>-->
-                    <!--</resources>-->
-                <!--</configuration>-->
+            <!--<groupId>com.spotify</groupId>-->
+            <!--<artifactId>docker-maven-plugin</artifactId>-->
+            <!--<version>${docker.plugin.version}</version>-->
+            <!--<configuration>-->
+            <!--<imageName>triumph-business-dockerfile</imageName>-->
+            <!--<dockerDirectory>src/main/docker</dockerDirectory>-->
+            <!--<resources>-->
+            <!--<resource>-->
+            <!--<targetPath>/</targetPath>-->
+            <!--<directory>${project.build.directory}</directory>-->
+            <!--<include>${project.build.finalName}.jar</include>-->
+            <!--</resource>-->
+            <!--</resources>-->
+            <!--</configuration>-->
             <!--</plugin>-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -290,12 +297,12 @@
                         </auth>
                     </to>
                     <!--<executions>-->
-                        <!--<execution>-->
-                            <!--<phase>package</phase>-->
-                            <!--<goals>-->
-                                <!--<goal>build</goal>-->
-                            <!--</goals>-->
-                        <!--</execution>-->
+                    <!--<execution>-->
+                    <!--<phase>package</phase>-->
+                    <!--<goals>-->
+                    <!--<goal>build</goal>-->
+                    <!--</goals>-->
+                    <!--</execution>-->
                     <!--</executions>-->
                 </configuration>
             </plugin>

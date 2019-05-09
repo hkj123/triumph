@@ -1,6 +1,7 @@
 package com.accumulate.business.service;
 
 import com.accumulate.business.entity.User;
+import com.accumulate.business.model.JobAndTrigger;
 import com.accumulate.business.model.MyPage;
 import com.accumulate.business.model.ParamSome;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
@@ -25,4 +26,6 @@ public interface IUserService extends IService<User> {
 	MyPage<User> pageFindUserModel(MyPage<User> myPage, ParamSome paramSome);
 
 	Page<User> pageFindUserModel2(Page myPage, Wrapper<User> wrapper);
+
+	List<JobAndTrigger> getJobAndTriggerDetails();
 }

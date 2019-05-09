@@ -1,17 +1,17 @@
-server:
-  servlet:
-    context-path: /ts
+#server:
+#  servlet:
+#    context-path: /ts
 spring:
   profiles:
     active: dev
     include: swagger
   datasource:
-    platform: postgres
-    url: jdbc:postgresql://192.168.0.150:5432/postgres_test
-    username: postgres
-    password: drore1!
+    url: jdbc:mysql://192.168.3.164:3306/mg_db?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: mg
+    password: MG.1234
+    type: com.alibaba.druid.pool.DruidDataSource
   redis:
-    host: 192.168.0.150
+    host: 192.168.3.164
     password:
     database: 3
     port: 6379
@@ -23,36 +23,19 @@ spring:
         max-idle: 400
         testOnBorrow: true
         testOnReturn: true
-#eureka:
-#  instance:
-#    leaseRenewalIntervalInSeconds: 10
-##    spring-admin
-#    health-check-url-path: /actuator/health
-#  client:
-#    registryFetchIntervalSeconds: 5
-#    register-with-eureka: true
-#    fetch-registry: true
-#    service-url:
-#      defaultZone: http://localhost:8761/eureka/
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 10
-#    spring-admin
     metadata-map:
       management:
-        context-path: /ts/actuator   #manage url   2
-        port: 9001  #设置健康的port 设定特定的访问端口  重要
-    health-check-url: http://192.168.123.83:9001/ts/actuator/health   # health url 3
-    status-page-url: http://192.168.123.83:9001/ts/actuator/info
-#    home-page-url: http://192.168.123.83:9001/hukaijia
+        context-path: /actuator
+    health-check-url-path: /actuator/health
     prefer-ip-address: true
-    ip-address: 192.168.123.83   #设置健康的ip
-#    non-secure-port-enabled: true
-#    non-secure-port: 31943
+    ip-address: localhost
   client:
     registryFetchIntervalSeconds: 5
-    register-with-eureka: true
-    fetch-registry: true
+    register-with-eureka: false
+    fetch-registry: false
     service-url:
       defaultZone: http://localhost:8761/eureka/
-#      defaultZone: http://118.31.17.205:8761/eureka/
+

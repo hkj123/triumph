@@ -2,6 +2,7 @@ package com.accumulate.business.service.impl;
 
 import com.accumulate.business.entity.User;
 import com.accumulate.business.mapper.UserMapper;
+import com.accumulate.business.model.JobAndTrigger;
 import com.accumulate.business.model.MyPage;
 import com.accumulate.business.model.ParamSome;
 import com.accumulate.business.service.IUserService;
@@ -42,5 +43,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 	@Override
 	public Page<User> pageFindUserModel2(Page myPage, Wrapper<User> wrapper){
 		return baseMapper.mySelectPage2(myPage,wrapper);
+	}
+
+	@Override
+	public List<JobAndTrigger> getJobAndTriggerDetails() {
+		return baseMapper.getJobAndTriggerDetails();
 	}
 }

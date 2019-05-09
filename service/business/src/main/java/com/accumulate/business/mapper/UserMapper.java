@@ -2,6 +2,7 @@ package com.accumulate.business.mapper;
 
 import com.accumulate.business.config.SuperMapper;
 import com.accumulate.business.entity.User;
+import com.accumulate.business.model.JobAndTrigger;
 import com.accumulate.business.model.MyPage;
 import com.accumulate.business.model.ParamSome;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
@@ -40,4 +41,6 @@ public interface UserMapper extends SuperMapper<User> {
     MyPage<User> mySelectPage(@Param("pg") MyPage<User> myPage, @Param("ps") ParamSome paramSome);
 
     Page<User> mySelectPage2(@Param("pg") Page myPage, @Param("ew") Wrapper wrapper);
+
+    List<JobAndTrigger> getJobAndTriggerDetails();
 }

@@ -6,8 +6,6 @@ info:
     version: 2.1.1
     name: spring-boot-business
 management:
-  security:
-    enabled: false
 #prometheus+grafana+springboot2监控集成配置
 #  metrics:
 #    export:
@@ -40,13 +38,8 @@ spring:
       enabled: false
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-#    platform: postgres
-#    url: jdbc:postgresql://192.168.0.150:5432/postgres_test
-#    username: postgres
-#    password: drore1!
-    # druid 数据库连接池配置
     druid:
-      driver-class-name: org.postgresql.Driver
+      driver-class-name: com.mysql.jdbc.Driver
       initial-size: 5
       max-active: 100
       min-idle: 5
@@ -90,10 +83,10 @@ spring:
 
 server:
   port: 9001
-  session:
-    cookie:
-      http-only: true
-    timeout: 36000
+#  session:
+#    cookie:
+#      http-only: true
+#    timeout: 36000
   compression:
     enabled: true
     mime-types: application/json,application/xml,text/html,text/xml,text/plain
