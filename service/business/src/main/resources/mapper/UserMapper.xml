@@ -2,41 +2,146 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.accumulate.business.mapper.UserMapper">
 
-<!--    <select id="mySelectPage" resultType="com.accumulate.business.entity.User">-->
-<!--        select *-->
-<!--        from test_user-->
-<!--        <if test="ps.erhao != null and ps.erhao != ''">-->
-<!--            <where>-->
-<!--                name = #{ps.erhao}-->
-<!--            </where>-->
-<!--        </if>-->
-<!--    </select>-->
+    <resultMap id="UserResultMap" type="com.accumulate.business.entity.User">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="user_type" property="userType" jdbcType="INTEGER"/>
+        <result column="trial_time" property="trialTime" jdbcType="INTEGER"/>
+        <result column="login_type" property="loginType" jdbcType="INTEGER"/>
+        <result column="login_device" property="loginDevice" jdbcType="INTEGER"/>
+        <result column="login_address" property="loginAddress" jdbcType="VARCHAR"/>
+        <result column="password_time" property="passwordTime" jdbcType="TIMESTAMP"/>
+        <result column="dept_id" property="deptId" jdbcType="BIGINT"/>
+        <result column="message_pushid" property="messagePushid" jdbcType="VARCHAR"/>
+        <result column="user_username" property="userUsername" jdbcType="VARCHAR"/>
+        <result column="user_realname" property="userRealname" jdbcType="VARCHAR"/>
+        <result column="user_password" property="userPassword" jdbcType="VARCHAR"/>
+        <result column="user_sex" property="userSex" jdbcType="INTEGER"/>
+        <result column="user_phone" property="userPhone" jdbcType="VARCHAR"/>
+        <result column="user_email" property="userEmail" jdbcType="VARCHAR"/>
+        <result column="user_status" property="userStatus" jdbcType="INTEGER"/>
+        <result column="user_signature" property="userSignature" jdbcType="VARCHAR"/>
+        <result column="user_remark" property="userRemark" jdbcType="VARCHAR"/>
+        <result column="user_photo" property="userPhoto" jdbcType="VARCHAR"/>
+        <result column="operator" property="operator" jdbcType="BIGINT"/>
+        <result column="operate_time" property="operateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
 
-<!--    <select id="mySelectPage2" resultType="com.accumulate.business.entity.User">-->
-<!--        select-->
-<!--        <include refid="Base_Column_List"/>-->
-<!--        from test_user-->
-<!--        &lt;!&ndash; 判断 wrapper 是否为空 emptyOfWhere &ndash;&gt;-->
-<!--        <where>-->
-<!--            ${ew.sqlSegment}-->
-<!--        </where>-->
-<!--    </select>-->
+    <select id="findUserPage" resultType="com.accumulate.business.entity.User">
+        select *
+        from user_information
+        <if test="pg.selectStr != null and pg.selectStr != ''">
+            <where>
+                user_username LIKE CONCAT('%',#{pg.selectStr},'%')
+            </where>
+        </if>
+    </select>
 
-<!--    &lt;!&ndash; 通用查询结果列 &ndash;&gt;-->
-<!--    <sql id="Base_Column_List">-->
-<!--		id, name-->
-<!--	</sql>-->
+    <!--    <insert id="create"  useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.accumulate.business.entity.User" >-->
+    <!--    <insert id="create"  useGeneratedKeys="true"  keyProperty="userUsername" parameterType="com.accumulate.business.entity.User" >-->
+    <!--      insert into user_information(-->
+    <!--          user_type,-->
+    <!--          trial_time,-->
+    <!--          login_type,-->
+    <!--          login_device,-->
+    <!--          login_address,-->
+    <!--          password_time,-->
+    <!--          dept_id,-->
+    <!--          message_pushid,-->
+    <!--          user_username,-->
+    <!--          user_realname,-->
+    <!--          user_password,-->
+    <!--          user_sex,-->
+    <!--          user_phone,-->
+    <!--          user_email,-->
+    <!--          user_status,-->
+    <!--          user_signature,-->
+    <!--          user_remark,-->
+    <!--          user_photo,-->
+    <!--          operator,-->
+    <!--          operate_time-->
+    <!--          ) values(-->
+    <!--              #{userType},-->
+    <!--              #{trialTime},-->
+    <!--              #{loginType},-->
+    <!--              #{loginDevice},-->
+    <!--              #{loginAddress},-->
+    <!--              #{passwordTime},-->
+    <!--              #{deptId},-->
+    <!--              #{messagePushid},-->
+    <!--              #{userUsername},-->
+    <!--              #{userRealname},-->
+    <!--              #{userPassword},-->
+    <!--              #{userSex},-->
+    <!--              #{userPhone},-->
+    <!--              #{userEmail},-->
+    <!--              #{userStatus},-->
+    <!--              #{userSignature},-->
+    <!--              #{userRemark},-->
+    <!--              #{userPhoto},-->
+    <!--              #{operator},-->
+    <!--              #{operateTime}-->
+    <!--          )-->
+    <!--&lt;!&ndash;        <selectKey resultType="long" keyProperty="id" order="AFTER">&ndash;&gt;-->
+    <!--&lt;!&ndash;            SELECT LAST_INSERT_ID()&ndash;&gt;-->
+    <!--&lt;!&ndash;        </selectKey>&ndash;&gt;-->
+    <!--    </insert>-->
 
-<!--    <delete id="deleteAll">-->
-<!--		DELETE FROM test_user-->
-<!--	</delete>-->
+    <!--    INSERT INTO collect_money_history(-->
+    <!--    order_id,-->
+    <!--    business_id,-->
+    <!--    collect_money_phase,-->
+    <!--    record_status,-->
+    <!--    actual_collect_date,-->
+    <!--    collect_money_sum,-->
+    <!--    periods,-->
+    <!--    operator,-->
+    <!--    operator_time-->
+    <!--    )VALUES(-->
+    <!--    #{orderId},-->
+    <!--    #{businessId},-->
+    <!--    #{collectMoneyPhase},-->
+    <!--    #{recordStatus},-->
+    <!--    #{actualCollectDate},-->
+    <!--    #{collectMoneySum},-->
+    <!--    #{periods},-->
+    <!--    #{operator},-->
+    <!--    #{operatorTime}-->
+    <!--    )-->
+    <!--    <select id="mySelectPage" resultType="com.accumulate.business.entity.User">-->
+    <!--        select *-->
+    <!--        from test_user-->
+    <!--        <if test="ps.erhao != null and ps.erhao != ''">-->
+    <!--            <where>-->
+    <!--                name = #{ps.erhao}-->
+    <!--            </where>-->
+    <!--        </if>-->
+    <!--    </select>-->
 
-<!--    <select id="selectListByWrapper" resultType="com.accumulate.business.entity.User">-->
-<!--        SELECT * FROM test_user-->
-<!--        &lt;!&ndash; 判断 wrapper 是否为空 emptyOfWhere &ndash;&gt;-->
-<!--        <where>-->
-<!--            ${ew.sqlSegment}-->
-<!--        </where>-->
-<!--    </select>-->
+    <!--    <select id="mySelectPage2" resultType="com.accumulate.business.entity.User">-->
+    <!--        select-->
+    <!--        <include refid="Base_Column_List"/>-->
+    <!--        from test_user-->
+    <!--        &lt;!&ndash; 判断 wrapper 是否为空 emptyOfWhere &ndash;&gt;-->
+    <!--        <where>-->
+    <!--            ${ew.sqlSegment}-->
+    <!--        </where>-->
+    <!--    </select>-->
+
+    <!--    &lt;!&ndash; 通用查询结果列 &ndash;&gt;-->
+    <!--    <sql id="Base_Column_List">-->
+    <!--		id, name-->
+    <!--	</sql>-->
+
+    <!--    <delete id="deleteAll">-->
+    <!--		DELETE FROM test_user-->
+    <!--	</delete>-->
+
+    <!--    <select id="selectListByWrapper" resultType="com.accumulate.business.entity.User">-->
+    <!--        SELECT * FROM test_user-->
+    <!--        &lt;!&ndash; 判断 wrapper 是否为空 emptyOfWhere &ndash;&gt;-->
+    <!--        <where>-->
+    <!--            ${ew.sqlSegment}-->
+    <!--        </where>-->
+    <!--    </select>-->
 
 </mapper>

@@ -1,45 +1,42 @@
 package com.accumulate.business.controller;
 
-import com.accumulate.business.entity.User;
-import com.accumulate.business.model.MyPage;
+import com.accumulate.business.entity.UserRole;
+import com.accumulate.business.model.UserAndListRoleModel;
+import com.accumulate.business.service.UserRoleService;
 import com.accumulate.business.utils.Result;
-import com.accumulate.business.service.IUserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import io.swagger.annotations.*;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @RestController
-@RequestMapping("/user")
-public class UserController extends ApiController {
+@RequestMapping("/userRole")
+public class UserRoleController extends ApiController {
 
     @Autowired
-    private IUserService userService;
-//
-//    @Autowired
-//    private RedisTemplate redisTemplate;
-//
-//    @Autowired
-//    private RestTemplate restTemplate;
+    private UserRoleService userRoleService;
 
     /**
      * user create
      */
-    @PostMapping("/create")
-    @ApiOperation(value = "create")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "Correct response", response = User.class)})
-    public Result create(@ApiParam("用户对象") @RequestBody User user) {
+    @PostMapping("/userAndRole")
+    @ApiOperation(value = "userAndRole")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Correct response", response = UserRole.class)})
+    public Result userAndRole(@ApiParam("用户角色实体") @RequestBody UserRole userRole) {
         try {
-            User user1 = new User();
-            BeanUtils.copyProperties(user, user1);
-            userService.save(user1);
-            return new Result(Result.ReturnValue.SUCCESS, "operate success", user1.getId());
+            UserRole userRole1 = new UserRole();
+            BeanUtils.copyProperties(userRole, userRole1);
+            userRoleService.save(userRole1);
+            return new Result(Result.ReturnValue.SUCCESS, "operate success", userRole1.getId());
         } catch (Exception e) {
             return new Result(Result.ReturnValue.FAILURE, "", e.getMessage());
         }
@@ -50,13 +47,13 @@ public class UserController extends ApiController {
      */
     @PostMapping("/update")
     @ApiOperation(value = "update")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "Correct response", response = User.class)})
-    public Result update(@ApiParam("用户对象") @RequestBody User user) {
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Correct response", response = UserRole.class)})
+    public Result update(@ApiParam("用户角色实体") @RequestBody UserRole userRole) {
         try {
-            if (Objects.isNull(user.getId())) {
+            if (Objects.isNull(userRole.getId())) {
                 return new Result(Result.ReturnValue.FAILURE, "", "id is null");
             }
-            userService.updateById(user);
+            userRoleService.updateById(userRole);
             return new Result(Result.ReturnValue.SUCCESS, "operate success");
         } catch (Exception e) {
             return new Result(Result.ReturnValue.FAILURE, "", e.getMessage());
@@ -64,52 +61,32 @@ public class UserController extends ApiController {
     }
 
     /**
-     * user delete
+     * userAndRole
      */
-    @DeleteMapping("/Delete")
-    @ApiOperation(value = "Delete")
-    public Result Delete(@ApiParam(value = "用户id", required = true) @RequestParam(value = "id", required = true) Long id) {
+    @PostMapping("/userAndListRole")
+    @ApiOperation(value = "userAndListRole")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Correct response", response = UserAndListRoleModel.class)})
+    public Result userAndListRole(@ApiParam("用户批量添加角色") @RequestBody UserAndListRoleModel userAndListRoleModel) {
         try {
-            userService.removeById(id);
+            if (Objects.isNull(userAndListRoleModel.getUserId())) {
+                return new Result(Result.ReturnValue.FAILURE, "", "user id is null");
+            }
+            //delete relation pre
+            QueryWrapper<UserRole> queryWrapper = new QueryWrapper<>();
+            if (Objects.nonNull(userAndListRoleModel.getUserId())) {
+                queryWrapper.eq("userId",userAndListRoleModel.getUserId());
+            }
+            userRoleService.remove(queryWrapper);
+            List<UserRole> userRoleList = new ArrayList<>();
+            for (Long roleId : userAndListRoleModel.getRoleIdList()) {
+                UserRole userRole = new UserRole();
+                userRole.setUserId(userAndListRoleModel.getUserId());
+                userRole.setRoleId(roleId);
+                userRoleList.add(userRole);
+            }
+            userRoleService.saveBatch(userRoleList);
             return new Result(Result.ReturnValue.SUCCESS, "operate success");
-        } catch (
-                Exception e) {
-            return new Result(Result.ReturnValue.FAILURE, "", e.getMessage());
-        }
-    }
-
-    @GetMapping("/findUserList")
-    @ApiOperation(value = "findUserList")
-    public Result findUserList(@ApiParam(value = "用户名", required = false) @RequestParam(value = "userUsername", required = false) String userUsername,
-                               @ApiParam(value = "用户姓名", required = false) @RequestParam(value = "userRealname", required = false) String userRealname,
-                               @ApiParam(value = "用户性别", required = false) @RequestParam(value = "userSex", required = false) Integer userSex) {
-        try {
-            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-            if (Objects.nonNull(userUsername)) {
-                queryWrapper.like("user_username", userUsername);
-            }
-            if (Objects.nonNull(userRealname)) {
-                queryWrapper.like("user_realname", userRealname);
-            }
-            if (Objects.nonNull(userSex)) {
-                queryWrapper.eq("user_sex", userSex);
-            }
-            List<User> userList = userService.list(queryWrapper);
-            return new Result(Result.ReturnValue.SUCCESS, "", userList);
-        } catch (
-                Exception e) {
-            return new Result(Result.ReturnValue.FAILURE, "", e.getMessage());
-        }
-    }
-
-    @PostMapping("/findUserPage")
-    @ApiOperation(value = "findUserPage", notes = "分页查询用户")
-    public Result findUserPage(@RequestBody MyPage<User> myPage) {
-        try {
-            Page<User> userMyPage = userService.findUserPage(myPage);
-            return new Result(Result.ReturnValue.SUCCESS, "", userMyPage);
-        } catch (
-                Exception e) {
+        } catch (Exception e) {
             return new Result(Result.ReturnValue.FAILURE, "", e.getMessage());
         }
     }

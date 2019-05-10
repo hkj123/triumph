@@ -16,9 +16,9 @@ import lombok.experimental.Accessors;
 public class MyPage<T> extends Page<T> {
     private static final long serialVersionUID = 5194933845448697148L;
 
-    @ApiModelProperty(value = "查询整型",example = "123")
+    @ApiModelProperty(value = "查询整型")
     private Integer selectInt;
-    @ApiModelProperty(value = "查询字符串",example = "123")
+    @ApiModelProperty(value = "查询字符串")
     private String selectStr;
 
     public MyPage() {
