@@ -2,8 +2,10 @@ package com.accumulate.business.controller;
 
 import com.accumulate.business.model.JobAndTrigger;
 import com.accumulate.business.model.JobInfo;
+import com.accumulate.business.model.MyPage;
 import com.accumulate.business.service.BaseJob;
 import com.accumulate.business.service.IUserService;
+import com.accumulate.business.service.JobOperateLogService;
 import com.accumulate.business.utils.DateUnit;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import io.swagger.annotations.ApiOperation;
@@ -25,7 +27,7 @@ import static org.quartz.DateBuilder.futureDate;
 @RequestMapping(value = "/job")
 public class JobController extends ApiController {
     @Autowired
-    private IUserService userService;
+    private JobOperateLogService jobOperateLogService;
     //加入Qulifier注解，通过名称注入bean
     @Autowired
     @Qualifier("Scheduler")
@@ -213,8 +215,8 @@ public class JobController extends ApiController {
      */
     @PostMapping(value = "/queryjob")
     @ApiOperation(value = "查询任务")
-    public List<JobAndTrigger> queryjob() {
-        List<JobAndTrigger> jobAndTrigger = userService.getJobAndTriggerDetails();
+    public MyPage<JobAndTrigger> queryjob(@RequestBody MyPage myPage) {
+        MyPage<JobAndTrigger> jobAndTrigger = jobOperateLogService.getJobAndTriggerDetails(myPage);
         return jobAndTrigger;
     }
 }

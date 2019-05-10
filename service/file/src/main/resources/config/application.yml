@@ -1,8 +1,16 @@
+info:
+  app:
+    version: 2.1.1
+    name: spring-boot-file
 management:
-    servlet-path: /api
-    security:
-        enabled: false
-
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+# prometheus+grafana+springboot2监控集成配置
 spring:
     application:
         name: file-service
@@ -15,18 +23,18 @@ spring:
             enabled: false
 server:
     port: 9002
-    session:
-        cookie:
-            http-only: true
-        timeout: 36000
-    compression:
-        enabled: true
-        mime-types: application/json,application/xml,text/html,text/xml,text/plain
-        min-response-size: 2048
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 60000
+#    session:
+#        cookie:
+#            http-only: true
+#        timeout: 36000
+#    compression:
+#        enabled: true
+#        mime-types: application/json,application/xml,text/html,text/xml,text/plain
+#        min-response-size: 2048
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 60000

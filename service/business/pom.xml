@@ -140,11 +140,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-        <!--prometheus监控  https://prometheus.io/docs/introduction/overview/-->
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-registry-prometheus</artifactId>
-        </dependency>
         <!--springboot添加prometheus健康监控-->
         <!--druid 数据源-->
         <dependency>
@@ -160,6 +155,13 @@
             <artifactId>spring-boot-starter-quartz</artifactId>
         </dependency>
         <!--quartz-->
+
+        <!--集成RabbitMQ-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <!--集成RabbitMQ-->
 
         <!--springboot添加prometheus健康监控-->
         <!--json-smart json string 和json转化-->
@@ -179,11 +181,7 @@
         <!--<artifactId>cache-api</artifactId>-->
         <!--<version>${jcache.version}</version>-->
         <!--</dependency>-->
-        <!--集成RabbitMQ-->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.boot</groupId>-->
-        <!--<artifactId>spring-boot-starter-amqp</artifactId>-->
-        <!--</dependency>-->
+
         <!--httpclient-->
         <!--<dependency>-->
         <!--<groupId>org.apache.commons</groupId>-->

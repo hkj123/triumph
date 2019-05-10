@@ -26,6 +26,4 @@ public interface IUserService extends IService<User> {
 	MyPage<User> pageFindUserModel(MyPage<User> myPage, ParamSome paramSome);
 
 	Page<User> pageFindUserModel2(Page myPage, Wrapper<User> wrapper);
-
-	List<JobAndTrigger> getJobAndTriggerDetails();
 }

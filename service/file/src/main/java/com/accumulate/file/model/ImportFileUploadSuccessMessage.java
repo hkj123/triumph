@@ -1,6 +1,6 @@
 package com.accumulate.file.model;
 
-import com.accumulate.entity.file.UploadFile;
+import com.accumulate.file.entity.UploadFile;
 import lombok.Data;
 
 import java.io.Serializable;

@@ -2,58 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.accumulate.business.mapper.UserMapper">
 
-    <select id="mySelectPage" resultType="com.accumulate.business.entity.User">
-		select *
-		from test_user
-        <if test="ps.erhao != null and ps.erhao != ''">
-            <where>
-                name = #{ps.erhao}
-            </where>
-        </if>
-	</select>
+<!--    <select id="mySelectPage" resultType="com.accumulate.business.entity.User">-->
+<!--        select *-->
+<!--        from test_user-->
+<!--        <if test="ps.erhao != null and ps.erhao != ''">-->
+<!--            <where>-->
+<!--                name = #{ps.erhao}-->
+<!--            </where>-->
+<!--        </if>-->
+<!--    </select>-->
 
-    <select id="mySelectPage2" resultType="com.accumulate.business.entity.User">
-        select
-        <include refid="Base_Column_List"/>
-        from test_user
-        <!-- 判断 wrapper 是否为空 emptyOfWhere -->
-        <where>
-            ${ew.sqlSegment}
-        </where>
-    </select>
+<!--    <select id="mySelectPage2" resultType="com.accumulate.business.entity.User">-->
+<!--        select-->
+<!--        <include refid="Base_Column_List"/>-->
+<!--        from test_user-->
+<!--        &lt;!&ndash; 判断 wrapper 是否为空 emptyOfWhere &ndash;&gt;-->
+<!--        <where>-->
+<!--            ${ew.sqlSegment}-->
+<!--        </where>-->
+<!--    </select>-->
 
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
-		id, name
-	</sql>
+<!--    &lt;!&ndash; 通用查询结果列 &ndash;&gt;-->
+<!--    <sql id="Base_Column_List">-->
+<!--		id, name-->
+<!--	</sql>-->
 
-    <delete id="deleteAll">
-		DELETE FROM test_user
-	</delete>
+<!--    <delete id="deleteAll">-->
+<!--		DELETE FROM test_user-->
+<!--	</delete>-->
 
-    <select id="selectListByWrapper" resultType="com.accumulate.business.entity.User">
-        SELECT * FROM test_user
-        <!-- 判断 wrapper 是否为空 emptyOfWhere -->
-        <where>
-            ${ew.sqlSegment}
-        </where>
-    </select>
-
-    <select id="getJobAndTriggerDetails" resultType="com.accumulate.business.model.JobAndTrigger">
-        SELECT DISTINCT
-        QRTZ_JOB_DETAILS.JOB_NAME,
-        QRTZ_JOB_DETAILS.JOB_GROUP,
-        QRTZ_JOB_DETAILS.JOB_CLASS_NAME,
-        QRTZ_TRIGGERS.TRIGGER_NAME,
-        QRTZ_TRIGGERS.TRIGGER_GROUP,
-        QRTZ_CRON_TRIGGERS.CRON_EXPRESSION,
-        QRTZ_CRON_TRIGGERS.TIME_ZONE_ID
-        FROM
-        QRTZ_JOB_DETAILS
-        INNER JOIN QRTZ_TRIGGERS ON QRTZ_TRIGGERS.TRIGGER_GROUP=QRTZ_JOB_DETAILS.JOB_GROUP
-        INNER JOIN QRTZ_CRON_TRIGGERS ON QRTZ_JOB_DETAILS.JOB_NAME = QRTZ_TRIGGERS.JOB_NAME
-        and QRTZ_TRIGGERS.TRIGGER_NAME = QRTZ_CRON_TRIGGERS.TRIGGER_NAME
-        and QRTZ_TRIGGERS.TRIGGER_GROUP = QRTZ_CRON_TRIGGERS.TRIGGER_GROUP
-    </select>
+<!--    <select id="selectListByWrapper" resultType="com.accumulate.business.entity.User">-->
+<!--        SELECT * FROM test_user-->
+<!--        &lt;!&ndash; 判断 wrapper 是否为空 emptyOfWhere &ndash;&gt;-->
+<!--        <where>-->
+<!--            ${ew.sqlSegment}-->
+<!--        </where>-->
+<!--    </select>-->
 
 </mapper>

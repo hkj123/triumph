@@ -44,9 +44,4 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 	public Page<User> pageFindUserModel2(Page myPage, Wrapper<User> wrapper){
 		return baseMapper.mySelectPage2(myPage,wrapper);
 	}
-
-	@Override
-	public List<JobAndTrigger> getJobAndTriggerDetails() {
-		return baseMapper.getJobAndTriggerDetails();
-	}
 }

@@ -1,6 +1,6 @@
 package com.accumulate.file.service;
 
-import com.accumulate.entity.file.UploadFile;
+import com.accumulate.file.entity.UploadFile;
 import com.mongodb.gridfs.GridFSDBFile;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,27 +19,27 @@ public interface UploadFileCridFsService {
      */
     UploadFile uploadFile(MultipartFile file) throws Exception;
 
-    /**
-     * 删除文件
-     *
-     * @return
-     */
-    void removeFile(String id);
-
-    /**
-     * 根据id获取文件列表信息
-     *
-     * @return
-     */
-    UploadFile getFileById(String id);
-
-    /**
-     * 获取文件内容
-     *
-     * @param id
-     * @return
-     */
-    GridFSDBFile getFileContent(String id);
+//    /**
+//     * 删除文件
+//     *
+//     * @return
+//     */
+//    void removeFile(String id);
+//
+//    /**
+//     * 根据id获取文件列表信息
+//     *
+//     * @return
+//     */
+//    UploadFile getFileById(String id);
+//
+//    /**
+//     * 获取文件内容
+//     *
+//     * @param id
+//     * @return
+//     */
+//    GridFSDBFile getFileContent(String id);
 
 //    /**
 //     *

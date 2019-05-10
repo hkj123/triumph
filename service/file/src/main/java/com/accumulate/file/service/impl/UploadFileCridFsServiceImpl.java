@@ -1,14 +1,12 @@
 package com.accumulate.file.service.impl;
 
-import com.accumulate.core.util.ZWDateUtil;
-import com.accumulate.entity.file.UploadFile;
+import com.accumulate.file.entity.UploadFile;
 import com.accumulate.file.repository.UploadFileRepository;
 import com.accumulate.file.service.UploadFileCridFsService;
 import com.mongodb.gridfs.GridFSDBFile;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.query.Query;
@@ -41,8 +39,8 @@ public class UploadFileCridFsServiceImpl implements UploadFileCridFsService {
     @Autowired
     GridFsTemplate gridFsTemplate;
 
-    @Autowired
-    RabbitTemplate rabbitTemplate;
+//    @Autowired
+//    RabbitTemplate rabbitTemplate;
 
     /**
      * 获取外网地址
@@ -77,11 +75,6 @@ public class UploadFileCridFsServiceImpl implements UploadFileCridFsService {
 
     private UploadFile uploadFile(InputStream inputStream, long fileSize, String fileName, String fileExtName) throws Exception {
         UploadFile uploadFile = new UploadFile();
-        uploadFile.setCreateTime(ZWDateUtil.getNowDateTime());
-        uploadFile.setRealName(fileName);
-        uploadFile.setName(fileName);
-        uploadFile.setType(fileExtName);
-        //uploadFile.setCreator(creator);
         uploadFile.setSize(fileSize);
         uploadFile = uploadFileRepository.save(uploadFile);
         uploadFile.setLocalUrl(getLocalResAccessUrl(uploadFile.getId()));
@@ -155,21 +148,21 @@ public class UploadFileCridFsServiceImpl implements UploadFileCridFsService {
 //        }
 //    }
 
-    @Override
-    public void removeFile(String id) {
-        uploadFileRepository.delete(id);
-        Query query = Query.query(GridFsCriteria.whereFilename().is(id));
-        gridFsTemplate.delete(query);
-    }
-
-    @Override
-    public UploadFile getFileById(String id) {
-        return uploadFileRepository.findOne(id);
-    }
-
-    @Override
-    public GridFSDBFile getFileContent(String id) {
-        Query query = Query.query(GridFsCriteria.whereFilename().is(id));
-        return gridFsTemplate.findOne(query);
-    }
+//    @Override
+//    public void removeFile(String id) {
+//        uploadFileRepository.delete(id);
+//        Query query = Query.query(GridFsCriteria.whereFilename().is(id));
+//        gridFsTemplate.delete(query);
+//    }
+//
+//    @Override
+//    public UploadFile getFileById(String id) {
+//        return uploadFileRepository.findOne(id);
+//    }
+//
+//    @Override
+//    public GridFSDBFile getFileContent(String id) {
+//        Query query = Query.query(GridFsCriteria.whereFilename().is(id));
+//        return gridFsTemplate.findOne(query);
+//    }
 }

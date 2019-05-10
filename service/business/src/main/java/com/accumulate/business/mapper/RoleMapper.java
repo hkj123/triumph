@@ -1,20 +1,9 @@
 package com.accumulate.business.mapper;
 
 import com.accumulate.business.config.SuperMapper;
-import com.accumulate.business.entity.User;
-import com.accumulate.business.model.MyPage;
-import com.accumulate.business.model.ParamSome;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import com.accumulate.business.entity.Role;
 
-import java.util.List;
-
-/**
- * User 表数据库控制层接口
- */
-public interface UserMapper extends SuperMapper<User> {
+public interface RoleMapper extends SuperMapper<Role> {
 
 //    /**
 //     * 自定义注入方法

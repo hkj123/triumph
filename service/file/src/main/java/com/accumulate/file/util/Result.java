@@ -1,4 +1,4 @@
-package com.accumulate.business.model;
+package com.accumulate.file.util;
 
 import java.io.Serializable;
 

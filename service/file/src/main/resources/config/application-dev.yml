@@ -1,18 +1,18 @@
 spring:
-    profiles:
-        active: dev
-        include: swagger
-    devtools:
-        restart:
-            enabled: true
-        livereload:
-            enabled: false # we use gulp + BrowserSync for livereload
-    jackson:
-        serialization.indent_output: true
-    data:
-        mongodb:
-            uri: mongodb://192.168.3.2:27017
-            database: hukaijia_test
+  profiles:
+    active: dev
+    include: swagger
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: false # we use gulp + BrowserSync for livereload
+  jackson:
+    serialization.indent_output: true
+  data:
+    mongodb:
+      uri: mongodb://192.168.3.2:27017
+      database: hukaijia_test
 #    rabbitmq:
 #        username: dev
 #        password: dev
@@ -22,22 +22,19 @@ spring:
 
 eureka:
   instance:
-       statusPageUrlPath: /info
-       healthCheckUrlPath: /health
+    leaseRenewalIntervalInSeconds: 10
+    metadata-map:
+      management:
+        context-path: /actuator
+    health-check-url-path: /actuator/health
+    prefer-ip-address: true
+    ip-address: localhost
   client:
-       register-with-eureka: true
-       fetch-registry: true
-       service-url:
-#            defaultZone: http://localhost:8761/eureka/
-          defaultZone: http://${security.user.name}:${security.user.password}@${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
-
-security:
-    basic:
-        enabled: true
-    user:
-        name: root
-        password: 123456
-
+    registryFetchIntervalSeconds: 5
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
 gridfs:
-    path: 192.168.3.4:8761/service-file
-    localPath: 127.0.0.7:8761/service-file
+  path: 192.168.3.164:8761/service-file
+  localPath: 127.0.0.1:8761/service-file

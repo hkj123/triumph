@@ -55,21 +55,21 @@
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
         <!--服务调用-->
-        <dependency>
-            <groupId>com.accumulate</groupId>
-            <artifactId>triumph-core</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.accumulate</groupId>
-            <artifactId>triumph-entity</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.accumulate</groupId>-->
+<!--            <artifactId>triumph-core</artifactId>-->
+<!--            <version>${project.version}</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.accumulate</groupId>-->
+<!--            <artifactId>triumph-entity</artifactId>-->
+<!--            <version>${project.version}</version>-->
+<!--        </dependency>-->
         <!--集成RabbitMQ-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-amqp</artifactId>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>commons-io</groupId>
@@ -85,7 +85,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.accumulate.eureka.EurekaApplication</mainClass>
+                    <mainClass>com.accumulate.file.FileApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

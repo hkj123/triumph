@@ -1,7 +1,8 @@
 package com.accumulate.file.repository;
 
-        import com.accumulate.entity.file.UploadFile;
-        import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.accumulate.file.entity.UploadFile;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
  * Created by ChenChang on 2017/3/31.
