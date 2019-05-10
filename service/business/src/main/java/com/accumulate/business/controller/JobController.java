@@ -4,10 +4,10 @@ import com.accumulate.business.model.JobAndTrigger;
 import com.accumulate.business.model.JobInfo;
 import com.accumulate.business.model.MyPage;
 import com.accumulate.business.service.BaseJob;
-import com.accumulate.business.service.IUserService;
 import com.accumulate.business.service.JobOperateLogService;
 import com.accumulate.business.utils.DateUnit;
 import com.baomidou.mybatisplus.extension.api.ApiController;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.quartz.*;
@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Objects;
 
 import static org.quartz.DateBuilder.futureDate;
@@ -25,6 +24,7 @@ import static org.quartz.DateBuilder.futureDate;
  */
 @RestController
 @RequestMapping(value = "/job")
+@Api("跑批任务管理")
 public class JobController extends ApiController {
     @Autowired
     private JobOperateLogService jobOperateLogService;

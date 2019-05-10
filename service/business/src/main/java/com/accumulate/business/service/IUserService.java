@@ -9,6 +9,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * User 表数据服务层接口
@@ -17,6 +19,7 @@ public interface IUserService extends IService<User> {
 
     MyPage<User> findUserPage(MyPage<User> myPage);
 
+    String createToken(long userId);
 //    Long create(User user);
 //	boolean deleteAll();
 //

@@ -6,10 +6,7 @@ import com.accumulate.business.service.UserRoleService;
 import com.accumulate.business.utils.Result;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +17,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/userRole")
+@Api("用户角色管理")
 public class UserRoleController extends ApiController {
 
     @Autowired
@@ -38,7 +36,7 @@ public class UserRoleController extends ApiController {
             userRoleService.save(userRole1);
             return new Result(Result.ReturnValue.SUCCESS, "operate success", userRole1.getId());
         } catch (Exception e) {
-            return new Result(Result.ReturnValue.FAILURE, "", e.getMessage());
+            return new Result(Result.ReturnValue.FAILURE, e.getMessage());
         }
     }
 
@@ -51,7 +49,7 @@ public class UserRoleController extends ApiController {
     public Result userAndListRole(@ApiParam("用户批量添加角色") @RequestBody UserAndListRoleModel userAndListRoleModel) {
         try {
             if (Objects.isNull(userAndListRoleModel.getUserid())) {
-                return new Result(Result.ReturnValue.FAILURE, "", "user id is null");
+                return new Result(Result.ReturnValue.FAILURE, "user id is null", "user id is null");
             }
             //delete relation pre
             QueryWrapper<UserRole> queryWrapper = new QueryWrapper<>();
@@ -69,7 +67,7 @@ public class UserRoleController extends ApiController {
             userRoleService.saveBatch(userRoleList);
             return new Result(Result.ReturnValue.SUCCESS, "operate success");
         } catch (Exception e) {
-            return new Result(Result.ReturnValue.FAILURE, "", e.getMessage());
+            return new Result(Result.ReturnValue.FAILURE,  e.getMessage());
         }
     }
 //

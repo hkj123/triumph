@@ -17,6 +17,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/user")
+@Api("用户管理")
 public class UserController extends ApiController {
 
     @Autowired
@@ -36,12 +37,21 @@ public class UserController extends ApiController {
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Correct response", response = User.class)})
     public Result create(@ApiParam("用户对象") @RequestBody User user) {
         try {
+            if (Objects.isNull(user)) {
+                return new Result(Result.ReturnValue.FAILURE, "User does not exist");
+            }
+            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("username", user.getUsername());
+            User olduser = userService.getOne(queryWrapper);
+            if(Objects.nonNull(olduser)){
+                return new Result(Result.ReturnValue.FAILURE, "Username is duplicate, please re-enter");
+            }
             User user1 = new User();
             BeanUtils.copyProperties(user, user1);
             userService.save(user1);
             return new Result(Result.ReturnValue.SUCCESS, "operate success", user1.getId());
         } catch (Exception e) {
-            return new Result(Result.ReturnValue.FAILURE, "", e.getMessage());
+            return new Result(Result.ReturnValue.FAILURE, e.getMessage());
         }
     }
 
@@ -54,12 +64,19 @@ public class UserController extends ApiController {
     public Result update(@ApiParam("用户对象") @RequestBody User user) {
         try {
             if (Objects.isNull(user.getId())) {
-                return new Result(Result.ReturnValue.FAILURE, "", "id is null");
+                return new Result(Result.ReturnValue.FAILURE, "id is null", "id is null");
+            }
+            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("username", user.getUsername());
+            queryWrapper.ne("id",user.getId());
+            User olduser = userService.getOne(queryWrapper);
+            if(Objects.nonNull(olduser)){
+                return new Result(Result.ReturnValue.FAILURE, "Username is duplicate, please re-enter");
             }
             userService.updateById(user);
             return new Result(Result.ReturnValue.SUCCESS, "operate success");
         } catch (Exception e) {
-            return new Result(Result.ReturnValue.FAILURE, "", e.getMessage());
+            return new Result(Result.ReturnValue.FAILURE, e.getMessage());
         }
     }
 
@@ -74,7 +91,7 @@ public class UserController extends ApiController {
             return new Result(Result.ReturnValue.SUCCESS, "operate success");
         } catch (
                 Exception e) {
-            return new Result(Result.ReturnValue.FAILURE, "", e.getMessage());
+            return new Result(Result.ReturnValue.FAILURE,  e.getMessage());
         }
     }
 
@@ -98,7 +115,7 @@ public class UserController extends ApiController {
             return new Result(Result.ReturnValue.SUCCESS, "", userList);
         } catch (
                 Exception e) {
-            return new Result(Result.ReturnValue.FAILURE, "", e.getMessage());
+            return new Result(Result.ReturnValue.FAILURE,  e.getMessage());
         }
     }
 
@@ -110,7 +127,7 @@ public class UserController extends ApiController {
             return new Result(Result.ReturnValue.SUCCESS, "", userMyPage);
         } catch (
                 Exception e) {
-            return new Result(Result.ReturnValue.FAILURE, "", e.getMessage());
+            return new Result(Result.ReturnValue.FAILURE, e.getMessage());
         }
     }
 //
