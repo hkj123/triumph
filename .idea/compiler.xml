@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="triumph-entity" />
+        <module name="triumph-service-eureka" />
+        <module name="triumph-service-file" />
+        <module name="triumph-service-admin" />
+        <module name="triumph-service-business" />
+        <module name="triumph-service-zuul" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="triumph" target="1.8" />
+      <module name="triumph-entity" target="1.8" />
+      <module name="triumph-service" target="1.8" />
+      <module name="triumph-service-admin" target="1.8" />
+      <module name="triumph-service-business" target="1.8" />
+      <module name="triumph-service-eureka" target="1.8" />
+      <module name="triumph-service-file" target="1.8" />
+      <module name="triumph-service-zuul" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="triumph-entity" options="-parameters" />
+      <module name="triumph-service-admin" options="-parameters" />
+      <module name="triumph-service-business" options="-parameters" />
+      <module name="triumph-service-eureka" options="-parameters" />
+      <module name="triumph-service-file" options="-parameters" />
+      <module name="triumph-service-zuul" options="-parameters" />
+    </option>
+  </component>
+</project>
