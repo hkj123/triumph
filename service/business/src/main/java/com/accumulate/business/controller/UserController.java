@@ -80,19 +80,19 @@ public class UserController extends ApiController {
 
     @GetMapping("/findUserList")
     @ApiOperation(value = "findUserList")
-    public Result findUserList(@ApiParam(value = "用户名", required = false) @RequestParam(value = "userUsername", required = false) String userUsername,
-                               @ApiParam(value = "用户姓名", required = false) @RequestParam(value = "userRealname", required = false) String userRealname,
-                               @ApiParam(value = "用户性别", required = false) @RequestParam(value = "userSex", required = false) Integer userSex) {
+    public Result findUserList(@ApiParam(value = "用户名", required = false) @RequestParam(value = "username", required = false) String username,
+                               @ApiParam(value = "用户姓名", required = false) @RequestParam(value = "realname", required = false) String realname,
+                               @ApiParam(value = "用户性别", required = false) @RequestParam(value = "sex", required = false) Integer sex) {
         try {
             QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-            if (Objects.nonNull(userUsername)) {
-                queryWrapper.like("user_username", userUsername);
+            if (Objects.nonNull(username)) {
+                queryWrapper.like("username", username);
             }
-            if (Objects.nonNull(userRealname)) {
-                queryWrapper.like("user_realname", userRealname);
+            if (Objects.nonNull(realname)) {
+                queryWrapper.like("realname", realname);
             }
-            if (Objects.nonNull(userSex)) {
-                queryWrapper.eq("user_sex", userSex);
+            if (Objects.nonNull(sex)) {
+                queryWrapper.eq("sex", sex);
             }
             List<User> userList = userService.list(queryWrapper);
             return new Result(Result.ReturnValue.SUCCESS, "", userList);

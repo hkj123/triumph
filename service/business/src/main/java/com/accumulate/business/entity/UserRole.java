@@ -25,12 +25,12 @@ public class UserRole extends SuperEntity<UserRole> {
      * 用户id
      */
     @ApiModelProperty(value = "用户id", notes = "用户id")
-   @TableField(value = "user_id")
-    private Long userId;
+   @TableField(value = "userid")
+    private Long userid;
     /**
      * 角色id
      */
     @ApiModelProperty(value = "角色id", notes = "角色id")
-   @TableField(value = "role_id")
-    private Long roleId;
+   @TableField(value = "roleid")
+    private Long roleid;
 }

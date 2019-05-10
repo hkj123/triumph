@@ -31,68 +31,68 @@ public class User extends SuperEntity<User> {
      * 用户类型  409 正式用户  410试用账户
      */
     @ApiModelProperty(value = "用户类型", notes = "409 正式用户  410试用账户")
-    @TableField(value = "user_type")
-    private Integer userType;
+    @TableField(value = "type")
+    private Integer type;
     /**
      * 试用时长 402试用账户 单位:月
      */
     @ApiModelProperty(value = "试用时长", notes = "单位（月）")
-    @TableField(value = "trial_time")
-    private Integer trialTime;
+    @TableField(value = "trialtime")
+    private Integer trialtime;
     /**
      * 411 密码登录 412 二维码登录 413 人脸识别登录
      */
 
     @ApiModelProperty(value = "登录类型", notes = "411 密码登录 412 二维码登录 413 人脸识别登录")
-    @TableField(value = "login_type")
-    private Integer loginType;
+    @TableField(value = "logintype")
+    private Integer logintype;
     /**
      * 登录设备类型  414 pc端 415 app端
      */
 
     @ApiModelProperty(value = "登录设备类型", notes = "414 pc端 415 app端 ")
-    @TableField(value = "login_device")
-    private Integer loginDevice;
+    @TableField(value = "logindevice")
+    private Integer logindevice;
     /**
      * 登录地址
      */
     @ApiModelProperty(value = "登录地址", notes = "登录地址")
-    @TableField(value = "login_address")
-    private String loginAddress;
+    @TableField(value = "loginaddress")
+    private String loginaddress;
     /**
      * 密码过时时间
      */
     @ApiModelProperty(value = "密码过时时间", notes = "密码过时时间")
-    @TableField(value = "password_time")
-    private Date passwordTime;
+    @TableField(value = "passwordtime")
+    private Date passwordtime;
     /**
      * 部门id
      */
     @NotNull
     @ApiModelProperty(value = "部门id", notes = "部门id")
-    @TableField(value = "dept_id")
-    private Long deptId;
+    @TableField(value = "deptid")
+    private Long deptid;
     /**
      * 用户绑定的消息推送id
      */
     @ApiModelProperty(value = "用户绑定的消息推送id", notes = "用户绑定的消息推送id")
-    @TableField(value = "message_pushid")
-    private String messagePushid;
+    @TableField(value = "messagepushid")
+    private String messagepushid;
     /**
      * 是否管理员 416 个人权限 417 部门权限 418 公司权限
      */
     @NotNull
     @ApiModelProperty(value = "是否管理员", notes = "416 个人权限 417 部门管理员 418 公司管理员")
-    @TableField(value = "user_manager")
-    private Integer userManager;
+    @TableField(value = "usermanager")
+    private Integer usermanager;
     /**
      * 用户名
      */
     @NotNull
     @Size(min = 6, max = 50, message = "用户名长度不能小于6位大于50位")
     @ApiModelProperty(value = "用户名", notes = "用户名")
-    @TableField(value = "user_username")
-    private String userUsername;
+    @TableField(value = "username")
+    private String username;
     /**
      * 真实姓名
      */
@@ -100,40 +100,40 @@ public class User extends SuperEntity<User> {
     @Pattern(regexp = "^([\\u4e00-\\u9fa5]+|([a-zA-Z]+\\s?)+)$", message = "姓名只能汉字或者英文")
     @ApiModelProperty(value = "姓名", notes = "姓名")
     @Size(min = 1, max = 50, message = "姓名不能超过五十个字符")
-    @TableField(value = "user_realname")
-    private String userRealname;
+    @TableField(value = "realname")
+    private String realname;
     /**
      * 密码
      */
     @Size(min = 6, max = 64, message = "密码长度不能小于6位大于64位")
     @ApiModelProperty(value = "密码", notes = "密码")
-    @TableField(value = "user_password")
-    private String userPassword;
+    @TableField(value = "password")
+    private String password;
     /**
      * 性别  419 男  420 女
      */
     @ApiModelProperty(value = "性别", notes = "419 男  420 女")
-    @TableField(value= "user_sex")
-    private Integer userSex;
+    @TableField(value= "sex")
+    private Integer sex;
     /**
      * 电话
      */
     @Pattern(regexp = "[0-9-()（）]{7,18}", message = "电话格式错误")
     @ApiModelProperty(value = "手机号", notes = "手机号")
-    @TableField(value= "user_phone")
-    private String userPhone;
+    @TableField(value= "phone")
+    private String phone;
     /**
      * 邮箱
      */
     @ApiModelProperty(value = "邮箱", notes = "邮箱")
-    @TableField(value= "user_email")
-    private String userEmail;
+    @TableField(value= "email")
+    private String email;
     /**
      * 用户状态 0 启用 1 停用
      */
     @ApiModelProperty(value = "用户状态", notes = "0 启用 1 停用")
-    @TableField(value = "user_status")
-    private Integer userStatus;
+    @TableField(value = "status")
+    private Integer status;
     /**
      * 用户所属公司
      */
@@ -144,20 +144,20 @@ public class User extends SuperEntity<User> {
      * 用户签名
      */
     @ApiModelProperty(value = "用户签名", notes = "用户签名")
-    @TableField(value = "user_signature")
-    private String userSignature;
+    @TableField(value = "signature")
+    private String signature;
     /**
      * 备注
      */
     @ApiModelProperty(value = "备注", notes = "备注")
-    @TableField(value= "user_remark")
-    private String userRemark;
+    @TableField(value= "remark")
+    private String remark;
     /**
      * 用户头像
      */
     @ApiModelProperty(value = "用户头像", notes = "用户头像")
-    @TableField(value = "user_photo")
-    private String userPhoto;
+    @TableField(value = "photo")
+    private String photo;
 //    /**
 //     * 用户所属角色
 //     */
@@ -169,8 +169,8 @@ public class User extends SuperEntity<User> {
     @TableField(value = "operator")
     private Long operator;
     @ApiModelProperty(notes = "操作时间")
-    @TableField(value = "operate_time")
-    private Date operateTime;
+    @TableField(value = "operatetime")
+    private Date operatetime;
 
     /**
      * 用户状态

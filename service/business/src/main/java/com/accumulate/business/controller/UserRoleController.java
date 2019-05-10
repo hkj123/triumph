@@ -43,24 +43,6 @@ public class UserRoleController extends ApiController {
     }
 
     /**
-     * user  update
-     */
-    @PostMapping("/update")
-    @ApiOperation(value = "update")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "Correct response", response = UserRole.class)})
-    public Result update(@ApiParam("用户角色实体") @RequestBody UserRole userRole) {
-        try {
-            if (Objects.isNull(userRole.getId())) {
-                return new Result(Result.ReturnValue.FAILURE, "", "id is null");
-            }
-            userRoleService.updateById(userRole);
-            return new Result(Result.ReturnValue.SUCCESS, "operate success");
-        } catch (Exception e) {
-            return new Result(Result.ReturnValue.FAILURE, "", e.getMessage());
-        }
-    }
-
-    /**
      * userAndRole
      */
     @PostMapping("/userAndListRole")
@@ -68,20 +50,20 @@ public class UserRoleController extends ApiController {
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Correct response", response = UserAndListRoleModel.class)})
     public Result userAndListRole(@ApiParam("用户批量添加角色") @RequestBody UserAndListRoleModel userAndListRoleModel) {
         try {
-            if (Objects.isNull(userAndListRoleModel.getUserId())) {
+            if (Objects.isNull(userAndListRoleModel.getUserid())) {
                 return new Result(Result.ReturnValue.FAILURE, "", "user id is null");
             }
             //delete relation pre
             QueryWrapper<UserRole> queryWrapper = new QueryWrapper<>();
-            if (Objects.nonNull(userAndListRoleModel.getUserId())) {
-                queryWrapper.eq("userId",userAndListRoleModel.getUserId());
+            if (Objects.nonNull(userAndListRoleModel.getUserid())) {
+                queryWrapper.eq("userid",userAndListRoleModel.getUserid());
             }
             userRoleService.remove(queryWrapper);
             List<UserRole> userRoleList = new ArrayList<>();
-            for (Long roleId : userAndListRoleModel.getRoleIdList()) {
+            for (Long roleid : userAndListRoleModel.getRoleidList()) {
                 UserRole userRole = new UserRole();
-                userRole.setUserId(userAndListRoleModel.getUserId());
-                userRole.setRoleId(roleId);
+                userRole.setUserid(userAndListRoleModel.getUserid());
+                userRole.setRoleid(roleid);
                 userRoleList.add(userRole);
             }
             userRoleService.saveBatch(userRoleList);

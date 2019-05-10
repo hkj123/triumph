@@ -9,6 +9,6 @@ import java.util.List;
  */
 @Data
 public class UserAndListRoleModel {
-    private Long userId;
-    private List<Long> roleIdList;
+    private Long userid;
+    private List<Long> roleidList;
 }
