@@ -3,12 +3,12 @@ spring:
     active: dev
     include: swagger
   datasource:
-    url: jdbc:mysql://192.168.3.164:3306/mg_db?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
-    username: mg
-    password: MG.1234
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: hukaijia
+    password: Hukaijia.110
     type: com.alibaba.druid.pool.DruidDataSource
   redis:
-    host: 192.168.3.164
+    host: localhost
     password:
     database: 3
     port: 6379
