@@ -140,18 +140,27 @@ public class UserController extends ApiController {
         }
     }
 
-    @PostMapping("/rabbitmq")
-    @ApiOperation(value = "rabbitmq", notes = "分页查询用户")
-    public Result rabbitmq() {
+    @PostMapping("/rabbitmqDirectSender")
+    @ApiOperation(value = "rabbitmqDirectSender", notes = "rabbitmq消息发送")
+    public Result rabbitmqDirectSender() {
         try {
-            String msg = "hello, 序号: ";
-            this.rabbitTemplate.convertAndSend(RabbitConfig.EXCHANGE, RabbitConfig.TEST_TOPIC_ROUTINGKEY, msg);
+            userService.directSender();
             return new Result(Result.ReturnValue.SUCCESS, "");
         } catch (
                 Exception e) {
             return new Result(Result.ReturnValue.FAILURE, e.getMessage());
         }
     }
+//    @PostMapping("/rabbitmqDirectReceive")
+//    @ApiOperation(value = "rabbitmqDirectReceive", notes = "rabbitmq消息接收")
+//    public Result rabbitmqDirectReceive() {
+//        try {
+//            return new Result(Result.ReturnValue.SUCCESS, "");
+//        } catch (
+//                Exception e) {
+//            return new Result(Result.ReturnValue.FAILURE, e.getMessage());
+//        }
+//    }
 }
 
 //

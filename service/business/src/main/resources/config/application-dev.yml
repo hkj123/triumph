@@ -21,10 +21,10 @@ spring:
         testOnBorrow: true
         testOnReturn: true
   rabbitmq:
-    username: admin
-    password: admin
-    host: 192.168.3.164
-    virtual-host: mg-dev
+    username: hukaijia
+    password: hukaijia
+    host: localhost
+    virtual-host: hukaijia
     port: 5672
 eureka:
   instance:

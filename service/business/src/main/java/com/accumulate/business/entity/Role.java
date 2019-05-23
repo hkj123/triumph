@@ -27,21 +27,21 @@ public class Role extends SuperEntity<Role> {
      * 角色名
      */
     @ApiModelProperty(value = "角色名", notes = "角色名")
-    @TableField(value = "role_name")
-    private String roleName;
+    @TableField(value = "name")
+    private String name;
     /**
      * 角色状态 424 启用 425 停用
      */
     @ApiModelProperty(value = "角色状态", notes = "0 启用 1 停用")
-    @TableField(value = "role_status")
-    private Integer roleStatus;
+    @TableField(value = "status")
+    private Integer status;
     /**
      * 备注
      */
     @Size(max = 800, message = "备注不能超过800字符")
     @ApiModelProperty(value = "备注", notes = "备注")
-    @TableField(value = "role_remark")
-    private String roleRemark;
+    @TableField(value = "remark")
+    private String remark;
 //    /**
 //     * 角色的权限信息
 //     */
@@ -53,8 +53,8 @@ public class Role extends SuperEntity<Role> {
     @TableField(value = "operator")
     private Long operator;
     @ApiModelProperty(notes = "操作时间")
-    @TableField(value = "operate_time")
-    private Date operateTime;
+    @TableField(value = "operatetime")
+    private Date operatetime;
 
     /**
      * 角色状态
