@@ -7,7 +7,6 @@ import com.accumulate.business.model.ParamSome;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.springframework.amqp.core.Message;
 
 import java.util.List;
 import java.util.UUID;
@@ -32,7 +31,12 @@ public interface IUserService extends IService<User> {
 //
 //	Page<User> pageFindUserModel2(Page myPage, Wrapper<User> wrapper);
 
-    void directReceive(Message message);
+//    void rabbitmqDirectSender();
+//
+//    void rabbitmqDirectReceive(Message message);
 
-    void directSender();
+    void activitymqSender();
+
+    void activitymqReceive(String message);
+
 }

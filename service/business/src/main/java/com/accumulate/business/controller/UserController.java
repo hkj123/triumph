@@ -1,16 +1,13 @@
 package com.accumulate.business.controller;
 
-import com.accumulate.business.config.RabbitConfig;
 import com.accumulate.business.entity.User;
 import com.accumulate.business.model.MyPage;
-import com.accumulate.business.rabbitmq.DirectSender;
 import com.accumulate.business.utils.Result;
 import com.accumulate.business.service.IUserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.*;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,16 +24,13 @@ public class UserController extends ApiController {
     private IUserService userService;
 
 //    @Autowired
-//    private DirectSender directSender;
-//
-//    @Autowired
 //    private RedisTemplate redisTemplate;
 //
 //    @Autowired
 //    private RestTemplate restTemplate;
 
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
+//    @Autowired
+//    private RabbitTemplate rabbitTemplate;
 
     /**
      * user create
@@ -140,27 +134,30 @@ public class UserController extends ApiController {
         }
     }
 
-    @PostMapping("/rabbitmqDirectSender")
-    @ApiOperation(value = "rabbitmqDirectSender", notes = "rabbitmq消息发送")
-    public Result rabbitmqDirectSender() {
-        try {
-            userService.directSender();
-            return new Result(Result.ReturnValue.SUCCESS, "");
-        } catch (
-                Exception e) {
-            return new Result(Result.ReturnValue.FAILURE, e.getMessage());
-        }
-    }
-//    @PostMapping("/rabbitmqDirectReceive")
-//    @ApiOperation(value = "rabbitmqDirectReceive", notes = "rabbitmq消息接收")
-//    public Result rabbitmqDirectReceive() {
+//    @PostMapping("/rabbitmqDirectSender")
+//    @ApiOperation(value = "rabbitmqDirectSender", notes = "rabbitmq消息发送")
+//    public Result rabbitmqDirectSender() {
 //        try {
+//            userService.rabbitmqDirectSender();
 //            return new Result(Result.ReturnValue.SUCCESS, "");
 //        } catch (
 //                Exception e) {
 //            return new Result(Result.ReturnValue.FAILURE, e.getMessage());
 //        }
 //    }
+
+    @PostMapping("/activitymqSender")
+    @ApiOperation(value = "activitymqSender", notes = "activitymq消息发送")
+    public Result activitymqSender() {
+        try {
+            userService.activitymqSender();
+            return new Result(Result.ReturnValue.SUCCESS, "");
+        } catch (
+                Exception e) {
+            return new Result(Result.ReturnValue.FAILURE, e.getMessage());
+        }
+    }
+
 }
 
 //

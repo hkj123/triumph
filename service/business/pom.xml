@@ -157,11 +157,23 @@
         <!--quartz-->
 
         <!--集成RabbitMQ-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-amqp</artifactId>-->
+<!--        </dependency>-->
+        <!--集成RabbitMQ-->
+
+        <!-- 集成activemq -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
+            <artifactId>spring-boot-starter-activemq</artifactId>
         </dependency>
-        <!--集成RabbitMQ-->
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-pool</artifactId>
+        </dependency>
+        <!-- 集成activemq -->
+
 
         <!--springboot添加prometheus健康监控-->
         <!--json-smart json string 和json转化-->
