@@ -1,6 +1,6 @@
 package com.accumulate.business.service.impl;
 
-import com.accumulate.business.config.JmsConfig;
+//import com.accumulate.business.config.JmsConfig;
 import com.accumulate.business.entity.User;
 import com.accumulate.business.mapper.UserMapper;
 import com.accumulate.business.model.MyPage;
@@ -54,19 +54,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 //        this.rabbitTemplate.convertAndSend(RabbitConfig.EXCHANGE, RabbitConfig.TEST_TOPIC_ROUTINGKEY, msg);
 //    }
 
-    @Override
-    public void activitymqSender(){
-        Destination destination = new ActiveMQQueue("springboot.queue.test");
-        String msg = "activitymqDirectSender";
-        // 指定消息发送的目的地及内容
-        this.jmsTemplate.convertAndSend(destination,msg);
-    }
-
-    @JmsListener(destination ="springboot.queue.test")
-    public void activitymqReceive(String message) {
-        System.out.println("activitymqReceive接受到消息：" + message);
-        //TODO something
-    }
+//    @Override
+//    public void activitymqSender(){
+//        Destination destination = new ActiveMQQueue("springboot.queue.test");
+//        String msg = "activitymqDirectSender";
+//        // 指定消息发送的目的地及内容
+//        this.jmsTemplate.convertAndSend(destination,msg);
+//    }
+//
+//    @JmsListener(destination ="springboot.queue.test")
+//    public void activitymqReceive(String message) {
+//        System.out.println("activitymqReceive接受到消息：" + message);
+//        //TODO something
+//    }
 
 //    @Override
 //    public Long create(User user){

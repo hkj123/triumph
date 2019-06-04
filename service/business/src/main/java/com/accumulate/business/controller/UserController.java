@@ -4,14 +4,19 @@ import com.accumulate.business.entity.User;
 import com.accumulate.business.model.MyPage;
 import com.accumulate.business.utils.Result;
 import com.accumulate.business.service.IUserService;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.*;
+import org.aspectj.util.FileUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.util.List;
 import java.util.Objects;
 
@@ -133,6 +138,19 @@ public class UserController extends ApiController {
             return new Result(Result.ReturnValue.FAILURE, e.getMessage());
         }
     }
+//    @PostMapping("/findUJson")
+//    @ApiOperation(value = "findUJson", notes = "分页查询用户")
+//    public Result findUJson() {
+//        try {
+//            String path = Hello.class.getClassLoader().getResource("test.json").getPath();
+//            String s = ReadUtils.readJsonFile(path);
+//            JSONObject jobj = JSON.parseObject(s);
+//            return new Result(Result.ReturnValue.SUCCESS, "");
+//        } catch (
+//                Exception e) {
+//            return new Result(Result.ReturnValue.FAILURE, e.getMessage());
+//        }
+//    }
 
 //    @PostMapping("/rabbitmqDirectSender")
 //    @ApiOperation(value = "rabbitmqDirectSender", notes = "rabbitmq消息发送")
@@ -146,18 +164,25 @@ public class UserController extends ApiController {
 //        }
 //    }
 
-    @PostMapping("/activitymqSender")
-    @ApiOperation(value = "activitymqSender", notes = "activitymq消息发送")
-    public Result activitymqSender() {
-        try {
-            userService.activitymqSender();
-            return new Result(Result.ReturnValue.SUCCESS, "");
-        } catch (
-                Exception e) {
-            return new Result(Result.ReturnValue.FAILURE, e.getMessage());
-        }
+//    @PostMapping("/activitymqSender")
+//    @ApiOperation(value = "activitymqSender", notes = "activitymq消息发送")
+//    public Result activitymqSender() {
+//        try {
+//            userService.activitymqSender();
+//            return new Result(Result.ReturnValue.SUCCESS, "");
+//        } catch (
+//                Exception e) {
+//            return new Result(Result.ReturnValue.FAILURE, e.getMessage());
+//        }
+//    }
+    /**
+     * http://localhost:8080/user/test
+     //     */
+    @GetMapping("/hello")
+    @ApiOperation(value = "hello")
+    public Result hello() {
+        return new Result(Result.ReturnValue.SUCCESS, "");
     }
-
 }
 
 //
@@ -169,23 +194,14 @@ public class UserController extends ApiController {
 //    @ApiOperation(value = "add user")
 ////    @ApiResponses(value = {@ApiResponse(code = 200, message = "Correct response", response = User.class)})
 //    public Object addUser(@RequestBody final User user
-////            ,@RequestHeader(value = "token") String token
+//            ,@RequestHeader(value = "token") String token
 //    ) {
 ////        redis缓存使用示例
 //        redisTemplate.opsForValue().set("user", user);
 //        return userService.save(user);
 //    }
 //
-//    /**
-//     * http://localhost:8080/user/test
-//     */
-//    @GetMapping("/PageFindUser")
-//    @ApiOperation(value = "PageFind user")
-////    public IPage<User> PageFindUser() {
-//    public Result PageFindUser() {
-////        return userService.page(new Page<User>(0, 12), null);
-//        return new Result(Result.ReturnValue.SUCCESS, "", userService.page(new Page<User>(0, 12), null));
-//    }
+
 //
 //    /**
 //     * http://localhost:8080/user/test

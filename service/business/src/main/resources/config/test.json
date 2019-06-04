@@ -1,0 +1,1176 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "kernel",
+    "description": "Qloudbus Server",
+    "contact": {
+      "name": "QQ",
+      "url": "http://www.qloudfin.com",
+      "email": "mailto:info@qloudfin.com"
+    },
+    "version": "1.0.0",
+    "license": {
+      "name": "Qloudfin License",
+      "url": "http://www.qloudfin.com/License"
+    }
+  },
+  "host": "qloudkernel.pditdap.service.sd:80",
+  "basePath": "/",
+  "schemes": [
+    "http",
+    "https",
+    "wss",
+    "ws"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "definitions": {
+    "Check": {
+      "properties": {
+        "tcp": {
+          "type": "string"
+        },
+        "tlsSkipVerify": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "ttl": {
+          "type": "string"
+        },
+        "timeout": {
+          "type": "string"
+        },
+        "grpc": {
+          "type": "string"
+        },
+        "args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dockerShell": {
+          "type": "string"
+        },
+        "dockerId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "http": {
+          "type": "string"
+        },
+        "header": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "interval": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "deregisterCriticalServiceAfter": {
+          "type": "string"
+        },
+        "serviceId": {
+          "type": "string"
+        },
+        "grpcTls": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "License": {
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "CatalogService": {
+      "properties": {
+        "serviceTags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "serviceKind": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "serviceConnect": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "serviceAddress": {
+          "type": "string"
+        },
+        "nodeMeta": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "serviceName": {
+          "type": "string"
+        },
+        "node": {
+          "type": "string"
+        },
+        "serviceMeta": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "taggedAddresses": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "serviceEnableTagOverride": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "servicePort": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "serviceId": {
+          "type": "string"
+        },
+        "dc": {
+          "type": "string"
+        }
+      }
+    },
+    "HttpResponse": {},
+    "ServiceEndpointInfo": {
+      "properties": {
+        "schemes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "swagger": {
+          "type": "string"
+        },
+        "basePath": {
+          "type": "string"
+        },
+        "paths": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "host": {
+          "type": "string"
+        },
+        "produces": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "definitions": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "info": {},
+        "consumes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Contact": {
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "Registeration": {
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "check": {},
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "ApiInfo": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "termsOfService": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "license": {},
+        "contact": {}
+      }
+    },
+    "Object": {},
+    "List": {},
+    "Map": {}
+  },
+  "paths": {
+    "/configs/{name}": {
+      "get": {
+        "operationId": "getConfig",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "env",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "ns",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "no description",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateConfig",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true
+          },
+          {
+            "name": "env",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "ns",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "no description",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {}
+          }
+        }
+      },
+      "post": {
+        "operationId": "createConfig",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true
+          },
+          {
+            "name": "env",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "ns",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "no description",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {}
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteConfig",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "env",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "ns",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "no description",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/configs/{name}/extra": {
+      "put": {
+        "operationId": "updateConfigExtra",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "env",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "ns",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "no description",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {}
+          }
+        }
+      },
+      "post": {
+        "operationId": "createConfigExtra",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "env",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "ns",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "no description",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/kv/": {
+      "get": {
+        "operationId": "queryKey",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "dc",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "recurse",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "raw",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "keys",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {}
+          }
+        }
+      },
+      "put": {
+        "operationId": "createKey",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "dc",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {}
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteKey",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "dc",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "recurse",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/discovery/services/{name}": {
+      "get": {
+        "operationId": "getServiceInfo",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "dc",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {
+              "type": "array",
+              "items": {}
+            }
+          }
+        }
+      }
+    },
+    "/discovery/services": {
+      "get": {
+        "operationId": "getServicesList",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "dc",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {}
+          }
+        }
+      },
+      "post": {
+        "operationId": "register",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/services/{id}": {
+      "delete": {
+        "operationId": "deregister",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "no description",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/services/{name}/check": {
+      "get": {
+        "operationId": "getCheckInfo",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "dc",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {
+              "type": "array",
+              "items": {}
+            }
+          }
+        }
+      }
+    },
+    "/discovery/check/{status}/{checkId}": {
+      "put": {
+        "operationId": "checkTTL",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "path",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "checkId",
+            "in": "path",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/configs/search": {
+      "get": {
+        "operationId": "searchConfig",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "env",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "ns",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {
+              "type": "array",
+              "items": {}
+            }
+          }
+        }
+      }
+    },
+    "/discovery/services/{id}/check/{checkId}": {
+      "delete": {
+        "operationId": "checkDelete",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "checkId",
+            "in": "path",
+            "description": "no description",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/services/dc": {
+      "get": {
+        "operationId": "getDatacenterInfo",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {
+              "type": "array",
+              "items": {}
+            }
+          }
+        }
+      }
+    },
+    "/discovery/check/{name}": {
+      "get": {
+        "operationId": "getCheckInfoDetail",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "dc",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "passing",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/configs/env": {
+      "get": {
+        "operationId": "getConfigEnvironments",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/kv/initialize": {
+      "get": {
+        "operationId": "initialize",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "202": {
+            "description": "returns success",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/configs/{env}/ns": {
+      "get": {
+        "operationId": "getConfigNamespaces",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "env",
+            "in": "path",
+            "description": "no description",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/configs/{env}/{ns}/name": {
+      "get": {
+        "operationId": "getConfigNames",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "env",
+            "in": "path",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "ns",
+            "in": "path",
+            "description": "no description",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/configs/{name}/payload": {
+      "get": {
+        "operationId": "getConfigPayload",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "env",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "ns",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "no description",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/discovery/swaggers/{name}": {
+      "get": {
+        "operationId": "getServiceSwagger",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "dc",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "description": "no description",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/discovery/services/{id}/check": {
+      "put": {
+        "operationId": "checkUpdate",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "no description",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/initialize": {
+      "get": {
+        "operationId": "initialize",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "202": {
+            "description": "returns success",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/checks": {
+      "get": {
+        "operationId": "getChecksList",
+        "summary": "no summary",
+        "description": "no description",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "no return description",
+            "schema": {}
+          }
+        }
+      }
+    }
+  },
+  "produces": [
+    "application/json"
+  ]
+}

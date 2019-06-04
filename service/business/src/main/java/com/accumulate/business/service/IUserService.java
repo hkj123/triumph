@@ -35,8 +35,8 @@ public interface IUserService extends IService<User> {
 //
 //    void rabbitmqDirectReceive(Message message);
 
-    void activitymqSender();
-
-    void activitymqReceive(String message);
+//    void activitymqSender();
+//
+//    void activitymqReceive(String message);
 
 }
