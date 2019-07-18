@@ -14,13 +14,15 @@ import org.aspectj.util.FileUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.util.List;
 import java.util.Objects;
 
-@RestController
+@Controller   //注意模板 需要这个
 @RequestMapping("/user")
 @Api("用户管理")
 public class UserController extends ApiController {
@@ -178,10 +180,10 @@ public class UserController extends ApiController {
     /**
      * http://localhost:8080/user/test
      //     */
-    @GetMapping("/hello")
+    @RequestMapping("/hello")
     @ApiOperation(value = "hello")
-    public Result hello() {
-        return new Result(Result.ReturnValue.SUCCESS, "");
+    public String handleHome() {
+        return "freemarker/home";
     }
 }
 
