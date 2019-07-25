@@ -23,8 +23,6 @@
         <!--<module>config</module>-->
         <!--<module>core</module>-->
         <module>entity</module>
-        <!--<module>monitor</module>-->
-        <!--<module>business</module>-->
         <!--<module>services</module>-->
         <module>service</module>
     </modules>
