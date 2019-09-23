@@ -1,0 +1,19 @@
+{
+  "aud": "https://qloudpdp.pditdap.service.sd/auth/realms/openbankingrs256",
+  "scope": "openid accounts",
+  "claims": {
+    "id_token": {
+      "openbanking_intent_id": {
+        "value": "efdc27eb-4d53-4f01-a306-22bc7c710ec5",
+        "essential": true
+      }
+    }
+  },
+  "iss": "client1-mtls-RS256-PS256",
+  "response_type": "code",
+  "redirect_uri": "https://obptest.pditdap.service.sd/test/a/test/callback",
+  "state": "lMNVjzczVx",
+  "exp": 1567732933,
+  "nonce": "vj6enasBPB",
+  "client_id": "client1-mtls-RS256-PS256"
+}

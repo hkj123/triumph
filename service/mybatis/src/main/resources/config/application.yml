@@ -1,0 +1,92 @@
+info:
+  app:
+    version: 2.2.0.M4
+    name: mybatis
+
+server:
+  port: 8094
+
+spring:
+  application:
+    name: mybatis-service
+#  profiles:
+#    active: @spring.profiles.active@
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery: # 服务发现配置
+        enabled: true
+        register: true
+        deregister: true
+        prefer-ip-address: true
+        health-check-interval: 10s
+        health-check-critical-timeout: 30s
+        health-check-path: /health
+        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port} # 应用名称+服务器IP+端口
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      initial-size: 5
+      max-active: 100
+      min-idle: 5
+      max-wait: 60000
+      pool-prepared-statements: true
+      url: jdbc:mysql://localhost:3306/test?useAffectedRows=true&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=UTC
+      username: hukaijia
+      password: Hukaijia.110
+      max-pool-prepared-statement-per-connection-size: 20
+      #      validation-query: SELECT 1 FROM DUAL
+      #      validation-query-timeout: 60000
+      #      test-on-borrow: false
+      #      test-on-return: false
+      #      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 100000
+      # druid 数据库连接池配置
+      # druid web配置 WebStatFilter配置，说明请参考Druid Wiki，配置_配置WebStatFilter
+      #      web-stat-filter:
+      #        enabled: true
+      #        url-pattern: /*
+      #        exclusions: *.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*
+      # StatViewServlet配置，说明请参考Druid Wiki，配置_StatViewServlet配置
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: false
+        login-username: admin
+        login-password: admin
+      #        allow: 127.0.0.1
+      #        deny: 192.168.32.139  #访问黑名单
+      # 配置StatFilter
+  #      filter:
+  #        stat:
+  #          db-type: postgresql
+  #          log-slow-sql: true
+  #          slow-sql-millis: 5000
+  #        wall:
+  #          enabled: true
+  #          db-type: postgresql
+  #          config:
+  #            delete-allow: false
+  #            drop-table-allow: false
+mybatis:
+  mapper-locations: classpath:mapping/*.xml         #配置映射文件位置，classpath指resources
+  type-aliases-package: com.springboot.mybatis.entity     #实体类所在位置
+#  configuration:                                    #打印sql到控制台
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+pagehelper:
+  helperDialect: mysql                           #分页插件方言选择
+  reasonable: true                               #合理化参数，设为true时pageNum<=0 时会查第一页， pageNum>pages（超过总数时），会查询最后一页
+  supportMethodsArguments: true
+
+logging:
+  level:
+    org.springframework.cloud.consul: DEBUG
