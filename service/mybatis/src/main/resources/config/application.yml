@@ -1,7 +1,7 @@
 info:
   app:
-    version: 2.2.0.M4
-    name: mybatis
+    version: 2.1.1
+    name: spring-boot-mybatis
 
 server:
   port: 8094
@@ -9,38 +9,19 @@ server:
 spring:
   application:
     name: mybatis-service
-#  profiles:
-#    active: @spring.profiles.active@
-  cloud:
-    consul:
-      host: localhost
-      port: 8500
-      discovery: # 服务发现配置
-        enabled: true
-        register: true
-        deregister: true
-        prefer-ip-address: true
-        health-check-interval: 10s
-        health-check-critical-timeout: 30s
-        health-check-path: /health
-        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port} # 应用名称+服务器IP+端口
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-      routes:
+  profiles:
+    active: @spring.profiles.active@
+  jackson:
+    serialization.write_dates_as_timestamps: true
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
-      driver-class-name: com.mysql.cj.jdbc.Driver
+      driver-class-name: com.mysql.jdbc.Driver
       initial-size: 5
       max-active: 100
       min-idle: 5
       max-wait: 60000
       pool-prepared-statements: true
-      url: jdbc:mysql://localhost:3306/test?useAffectedRows=true&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=UTC
-      username: hukaijia
-      password: Hukaijia.110
       max-pool-prepared-statement-per-connection-size: 20
       #      validation-query: SELECT 1 FROM DUAL
       #      validation-query-timeout: 60000
@@ -65,17 +46,18 @@ spring:
       #        allow: 127.0.0.1
       #        deny: 192.168.32.139  #访问黑名单
       # 配置StatFilter
-  #      filter:
-  #        stat:
-  #          db-type: postgresql
-  #          log-slow-sql: true
-  #          slow-sql-millis: 5000
-  #        wall:
-  #          enabled: true
-  #          db-type: postgresql
-  #          config:
-  #            delete-allow: false
-  #            drop-table-allow: false
+    #      filter:
+    #        stat:
+    #          db-type: postgresql
+    #          log-slow-sql: true
+    #          slow-sql-millis: 5000
+    #        wall:
+    #          enabled: true
+    #          db-type: postgresql
+    #          config:
+    #            delete-allow: false
+    #            drop-table-allow: false
+
 mybatis:
   mapper-locations: classpath:mapping/*.xml         #配置映射文件位置，classpath指resources
   type-aliases-package: com.springboot.mybatis.entity     #实体类所在位置
